@@ -51,14 +51,14 @@ public class Main {
 
 
         // Создаем объекты животных на начальной арене с максимальным количеством на клетке
-        for (int i = 0; i < areaY; i++) { // идем по строка
+        for (int i = 0; i < areaY; i++) { // идем по строкам
             for (int j = 0; j < areaX; j++) { // идем по столбцам
                 Position position = new Position(j, i); // Записываем позицию
                 List<Animal> animalsListTemp = new ArrayList<>(); // Создаем временный остров
 
                 for (var animalName : animalsMaxCountMap().entrySet()) {
 
-                    // Рандомное количетсво животных на клетке
+                    // Рандомное количество животных на клетке
                     SecureRandom randomCount = new SecureRandom();
                     int randomAnimalCount = randomCount.nextInt(animalName.getValue());
 

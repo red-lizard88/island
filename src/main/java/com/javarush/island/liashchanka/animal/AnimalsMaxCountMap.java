@@ -9,9 +9,9 @@ public class AnimalsMaxCountMap {
 
         // Максимальное количество животных на одной клетке
         HashMap<String, Integer> animalsMaxCountMap = new HashMap<>();
-        animalsMaxCountMap.put("Волк", 150); //30
-        animalsMaxCountMap.put("Кролик", 300); //150
-        animalsMaxCountMap.put("Растения", 100); //200
+        animalsMaxCountMap.put("Волк", 30); //30
+        animalsMaxCountMap.put("Кролик", 150); //150
+        animalsMaxCountMap.put("Растения", 200); //200
 
 
         return animalsMaxCountMap;
