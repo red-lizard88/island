@@ -84,8 +84,6 @@ public class Main {
 //        }
 
 
-
-
         // Вывод острова
         for (var oneAnimal : island.entrySet()) {
             System.out.println(oneAnimal);
@@ -93,25 +91,30 @@ public class Main {
 
 
         // Поедание одно животное другого
-        for (var oneAnimal : animalsList) {
-         //   if(oneAnimal.getPosition())
+        for (var positionAndAnimal : island.entrySet()) {
+            for (var animal : positionAndAnimal.getValue()) {
 
-            
-            
-                //System.out.println("Поедание");
+                SecureRandom randomAnimal = new SecureRandom();
+                int randomAnimalToEat = randomAnimal.nextInt(positionAndAnimal.getValue().size()); //Рандомное животное из листа в нашей Позиции
+                if (positionAndAnimal.getValue().get(randomAnimalToEat).isLive()) {  // Если животное живое пробуем съесть
+                    Animal.eat(animal, positionAndAnimal.getValue().get(randomAnimalToEat));
+                } else {
+                    randomAnimalToEat = randomAnimal.nextInt(positionAndAnimal.getValue().size()); //Рандомное животное из листа в нашей Позици
+                    Animal.eat(animal, positionAndAnimal.getValue().get(randomAnimalToEat));
+                }
+
             }
+        }
 
-            // for (var animalsEatPersent : animalsEatPersentMap().entrySet()) {
-            //if (animal.getName().equals(animalsEatPersent.getKey())) {
-            // System.out.println("Совпали "+animal);
-
-
-            // Position ourPosition = new Position(0,0);
-            //Animal.eat(animal, );
-            // System.out.println("Совпали после движения "+animal);
-            //    }
+        // for (var animalsEatPersent : animalsEatPersentMap().entrySet()) {
+        //if (animal.getName().equals(animalsEatPersent.getKey())) {
+        // System.out.println("Совпали "+animal);
 
 
+        // Position ourPosition = new Position(0,0);
+        //Animal.eat(animal, );
+        // System.out.println("Совпали после движения "+animal);
+        //    }
 
 
         //Map<Position, List<Animal>> island = new HashMap<>();
@@ -143,13 +146,11 @@ public class Main {
 //        }
 
 
-
-
         // Движение животных на клетках
         for (var animal : animalsList) {
             for (var animalMaxStep : animalsMaxStepMap().entrySet()) {
                 if (animal.getName().equals(animalMaxStep.getKey())) {
-                   Animal.move(animalMaxStep.getValue(), animal);
+                    Animal.move(animalMaxStep.getValue(), animal);
                 }
             }
         }
@@ -160,23 +161,19 @@ public class Main {
                 List<Animal> animalsListTemp = new ArrayList<>(); // Создаем временный остров
 
                 for (var animal : animalsList) {
-                    if(animal.getPosition().getX() ==j && animal.getPosition().getY()==i){
+                    if (animal.getPosition().getX() == j && animal.getPosition().getY() == i) {
                         animalsListTemp.add(animal);
                     }
                 }
 
                 for (var positionAndAnimal : island.entrySet()) {
-                    if(positionAndAnimal.getKey().getX()==j && positionAndAnimal.getKey().getY()==i){
+                    if (positionAndAnimal.getKey().getX() == j && positionAndAnimal.getKey().getY() == i) {
                         island.put(positionAndAnimal.getKey(), animalsListTemp);
                     }
-
                 }
-
 
             }
         }
-
-
 
 
         System.out.println("----------------------------------------------");
@@ -185,11 +182,10 @@ public class Main {
             System.out.println(oneAnimal);
         }
 
-
-
-//        for (var oneAnimal : animalsList) {
-//            System.out.println(oneAnimal);
-//        }
+        System.out.println("!!!!----------------------------------------------");
+        for (var oneAnimal : animalsList) {
+            System.out.println(oneAnimal);
+        }
 
 
     }

@@ -3,7 +3,9 @@ package com.javarush.island.liashchanka.abstracts;
 import com.javarush.island.liashchanka.animal.Position;
 
 import java.security.SecureRandom;
+import java.util.HashMap;
 
+import static com.javarush.island.liashchanka.animal.AnimalsEatPersentMap.animalsEatPersentMap;
 import static com.javarush.island.liashchanka.constants.Constants.areaX;
 import static com.javarush.island.liashchanka.constants.Constants.areaY;
 
@@ -156,9 +158,25 @@ public abstract class Animal {
     }
 
     public static void eat(Animal iEatAnimal, Animal meEat){
+       // HashMap<String, HashMap<String, Integer>>
         if (iEatAnimal.isLive){
             if(meEat.isLive){
-                //if()
+                for(var AnimalNameAndNameToEat:animalsEatPersentMap().entrySet()) {
+                    if(AnimalNameAndNameToEat.getKey().equals(iEatAnimal.getName())) {
+
+
+                        for(var animalNameToEatAndPersent : AnimalNameAndNameToEat.getValue().entrySet()) {
+                            if(meEat.getName().equals(animalNameToEatAndPersent.getKey())) {
+                                SecureRandom randomAnimal = new SecureRandom();
+                                int randomAnimalToEat = randomAnimal.nextInt(100); // Рандом на сколько мы съедим
+                                if(randomAnimalToEat <= animalNameToEatAndPersent.getValue()) { // На сколько процентов мы его съедим
+                                    meEat.setLive(false);
+                                }
+                            }
+                        }
+
+                    }
+                }
             }
         }
 
