@@ -100,9 +100,9 @@ public abstract class Animal {
         int y = animal.getPosition().getY();
 
 
-        // Генерация рандомного шага от минимального равного 1 до максимального
+        // Генерация рандомного шага от минимального равного 0 до максимального не включая
         SecureRandom randomStep = new SecureRandom();
-        int minStep = 1;
+        int minStep = 0;
         int step = randomStep.nextInt(maxStep - minStep + 1) + minStep;
 
         SecureRandom randomStepXOrY = new SecureRandom();
@@ -151,9 +151,18 @@ public abstract class Animal {
         }
         animal.setPosition(new Position(x, y));
 
+
+
     }
 
+    public static void eat(Animal iEatAnimal, Animal meEat){
+        if (iEatAnimal.isLive){
+            if(meEat.isLive){
+                //if()
+            }
+        }
 
+    }
 
 
 }

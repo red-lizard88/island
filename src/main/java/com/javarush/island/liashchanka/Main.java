@@ -5,10 +5,15 @@ import com.javarush.island.liashchanka.animal.Position;
 import com.javarush.island.liashchanka.factory.AnimalFactory;
 import com.javarush.island.liashchanka.factory.AnimalFactoryAbstract;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import static com.javarush.island.liashchanka.animal.AnimalsEatPersentMap.animalsEatPersentMap;
+import static com.javarush.island.liashchanka.animal.AnimalsMaxCountMap.animalsMaxCountMap;
+import static com.javarush.island.liashchanka.animal.AnimalsMaxStepMap.animalsMaxStepMap;
 import static com.javarush.island.liashchanka.constants.Constants.areaX;
 import static com.javarush.island.liashchanka.constants.Constants.areaY;
 
@@ -18,16 +23,11 @@ public class Main {
 
         //  List<String> animalsNameList = Arrays.asList("Волк", "Кролик");
 
-        HashMap<String, Integer> animalsMaxCountMap = new HashMap<>();
-        animalsMaxCountMap.put("Волк", 5); //30
-        animalsMaxCountMap.put("Кролик", 5); //150
-
-        HashMap<String, Integer> animalsMaxStepMap = new HashMap<>();
-        animalsMaxStepMap.put("Волк", 3);
-        animalsMaxStepMap.put("Кролик", 2);
-
 
         List<Animal> animalsList = new ArrayList<>();
+
+
+        Map<Position, List<Animal>> island = new HashMap<>();
 
         AnimalFactoryAbstract creator = new AnimalFactory();
 //        Animal ilya = creator.createAnimal("Волк");
@@ -53,40 +53,103 @@ public class Main {
         // Создаем объекты животных на начальной арене с максимальным количеством на клетке
         for (int i = 0; i < areaY; i++) { // идем по строка
             for (int j = 0; j < areaX; j++) { // идем по столбцам
-                Position position = new Position(j, i);
+                Position position = new Position(j, i); // Записываем позицию
+                List<Animal> animalsListTemp = new ArrayList<>(); // Создаем временный остров
 
-                //System.out.println(position);
-                for (var animalName : animalsMaxCountMap.entrySet()) {
+                for (var animalName : animalsMaxCountMap().entrySet()) {
 
-                    for (int m = 0; m < animalName.getValue(); m++) {
-                        Animal animal = creator.createAnimal(animalName.getKey());
+                    // Рандомное количетсво животных на клетке
+                    SecureRandom randomCount = new SecureRandom();
+                    int randomAnimalCount = randomCount.nextInt(animalName.getValue());
+
+                    for (int m = 0; m < randomAnimalCount; m++) {
+                        Animal animal = creator.createAnimal(animalName.getKey()); // Создаем в фабрике рандомное количество конкретных объектов животных
                         animal.setPosition(position);
-                        animal.setId(String.valueOf(j) + i + m);
+                        animal.setId(animalName.getKey() + "-" + j + i + m); // Указываем уникальное id животного
 
-                        animalsList.add(animal);
-                        //System.out.println(animal);
+                        animalsList.add(animal); // Сохраняем в лист животных
+                        animalsListTemp.add(animal); // Сохраняем во временный лист для острова
+
                     }
+
                 }
-                //wolf.move(wolf.maxStep);
-                //System.out.println("Пришел-в-X:" + wolf.move(wolf.maxStep).get(0) + ", Пришел-в-Y:" + wolf.move(wolf.maxStep).get(1));
+                // Добавляем в остров на конкретную позицию конкретный лист животных
+                island.put(position, animalsListTemp);
             }
         }
 
-//        for (var oneAnimal:animalsList) {
+
+//        for (var oneAnimal : animalsList) {
 //            System.out.println(oneAnimal);
 //        }
+
+
+
+
+         //Вывод острова
+//        for (var oneAnimal : island.entrySet()) {
+//            System.out.println(oneAnimal);
+//        }
+
+
+        // Поедание одно животное другого
+        for (var positionAndAnimal : island.entrySet()) {
+
+            //Map<Position, List<Animal>> island = new HashMap<>();
+            if (positionAndAnimal.getKey().getX() == 0 && positionAndAnimal.getKey().getY() == 0) {
+//                for (var animal : positionAndAnimal.getValue()) {
+//                    System.out.println(animal);
+//
+//                }
+                System.out.println("Поедание"+positionAndAnimal.getValue());
+            }
+
+            // for (var animalsEatPersent : animalsEatPersentMap().entrySet()) {
+            //if (animal.getName().equals(animalsEatPersent.getKey())) {
+            // System.out.println("Совпали "+animal);
+
+
+            // Position ourPosition = new Position(0,0);
+            //Animal.eat(animal, );
+            // System.out.println("Совпали после движения "+animal);
+            //    }
+
+
+        }
+
+        //Map<Position, List<Animal>> island = new HashMap<>();
+        // Движение животных на клетках через Остров
+//        for (var positionAndAnimal : island.entrySet()) {
+//            for (var animal : positionAndAnimal.getValue()) {
+//                for (var animalMaxStep : animalsMaxStepMap().entrySet()) {
+//                    if (animal.getName().equals(animalMaxStep.getKey())) {
+//                        Animal.move(animalMaxStep.getValue(), animal, positionAndAnimal.getKey());
+//                    }
+//
+//
+//                }
+//            }
+//        }
+
+
         for (var oneAnimal : animalsList) {
             System.out.println(oneAnimal);
         }
 
         System.out.println("----------------------------------------------");
+        // Вывод острова
+//        for (var oneAnimal : island.entrySet()) {
+//            System.out.println(oneAnimal);
+//        }
+
+
         // Движение животных на клетках
         for (var animal : animalsList) {
-            for (var animalMaxStep : animalsMaxStepMap.entrySet()) {
+            for (var animalMaxStep : animalsMaxStepMap().entrySet()) {
                 if (animal.getName().equals(animalMaxStep.getKey())) {
                     //System.out.println("Совпали "+animal);
                     // Position ourPosition = new Position(0,0);
-                    Animal.move(animalMaxStep.getValue(), animal);
+                   Animal.move(animalMaxStep.getValue(), animal);
                     // System.out.println("Совпали после движения "+animal);
                 }
 
@@ -99,16 +162,6 @@ public class Main {
             System.out.println(oneAnimal);
         }
 
-
-//        System.out.println(animalsList.get(0).getPosition().getX());
-//        System.out.println(animalsList.get(0).getPosition().getY());
-//
-//        Position positionAfterMove = animalsList.get(0).move(3, animalsList.get(0).getPosition());
-//        System.out.println("X после движения:" + positionAfterMove.getX() + ", Y после движения:" + positionAfterMove.getY());
-//
-//        System.out.println(animalsList.get(0).getPosition().getX());
-//        System.out.println(animalsList.get(0).getPosition().getY());
-//
 
     }
 
