@@ -119,16 +119,26 @@ public class Main {
         for (var positionAndAnimal : island.entrySet()) {
             List<Animal> animalsListTemp = new ArrayList<>(); // Создаем временный остров
 
-            for (var animal : positionAndAnimal.getValue()) {
-                for (var animalMaxStep : animalsMaxStepMap().entrySet()) {
+            for (var animal : positionAndAnimal.getValue()) { // Выбираем одно животное для хода
+                for (var animalMaxStep : animalsMaxStepMap().entrySet()) { // Проверяем максимальный ход животного
                     if (animal.getName().equals(animalMaxStep.getKey())) {
-                        Animal.move(animalMaxStep.getValue(), animal);
-                        animalsListTemp.add(animal);
-                    }
+                        Animal.move(animalMaxStep.getValue(), animal); // Ходим животным
 
+                        animalsListTemp.add(animal);
+                        System.out.println("Походил"+animal);
+                    }
+                }
+
+
+                if (positionAndAnimal.getKey().hashCode() == animal.getPosition().hashCode()){
 
                 }
             }
+
+
+
+
+
             island.put(positionAndAnimal.getKey(), animalsListTemp);
         }
 
