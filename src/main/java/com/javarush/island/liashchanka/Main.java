@@ -91,6 +91,7 @@ public class Main {
 
 
         // Поедание одно животное другого
+
         for (var positionAndAnimal : island.entrySet()) {
             for (var animal : positionAndAnimal.getValue()) {
 
@@ -155,7 +156,7 @@ public class Main {
             }
         }
 
-        // Изменяем остров после хождения животных
+        // Пересчитываем остров после хождения животных
         for (int i = 0; i < areaY; i++) { // идем по строкам
             for (int j = 0; j < areaX; j++) { // идем по столбцам
                 List<Animal> animalsListTemp = new ArrayList<>(); // Создаем временный остров
