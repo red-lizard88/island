@@ -8,14 +8,14 @@ public class AnimalsEatPersentMap {
 
         // Процент сколько каждое животное съест другое животное
         HashMap<String, Integer> wolfEatPersentMap = new HashMap<>(); // Какой процент что волк съесть другое животное
-        wolfEatPersentMap.put("Волк", 0);
+        wolfEatPersentMap.put("Волк", 0); //0
         wolfEatPersentMap.put("Удав", 0);
         wolfEatPersentMap.put("Лиса", 0);
         wolfEatPersentMap.put("Медведь", 0);
         wolfEatPersentMap.put("Орел", 0);
         wolfEatPersentMap.put("Лошадь", 10);
         wolfEatPersentMap.put("Олень", 15);
-        wolfEatPersentMap.put("Кролик", 60);
+        wolfEatPersentMap.put("Кролик", 60); //60
         wolfEatPersentMap.put("Мышь", 80);
         wolfEatPersentMap.put("Коза", 60);
         wolfEatPersentMap.put("Овца", 70);
@@ -26,14 +26,14 @@ public class AnimalsEatPersentMap {
         wolfEatPersentMap.put("Растения", 0);
 
         HashMap<String, Integer> rabbitEatPersentMap = new HashMap<>();
-        wolfEatPersentMap.put("Волк", 0);
+        wolfEatPersentMap.put("Волк", 0); //0
         wolfEatPersentMap.put("Удав", 0);
         wolfEatPersentMap.put("Лиса", 0);
         wolfEatPersentMap.put("Медведь", 0);
         wolfEatPersentMap.put("Орел", 0);
         wolfEatPersentMap.put("Лошадь", 0);
         wolfEatPersentMap.put("Олень", 0);
-        wolfEatPersentMap.put("Кролик", 0);
+        wolfEatPersentMap.put("Кролик", 0); //0
         wolfEatPersentMap.put("Мышь", 0);
         wolfEatPersentMap.put("Коза", 0);
         wolfEatPersentMap.put("Овца", 0);
