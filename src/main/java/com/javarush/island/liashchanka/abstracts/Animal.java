@@ -150,9 +150,7 @@ public abstract class Animal {
         }
         animal.setPosition(new Position(x, y));
         // Движение животного на один шаг и запись в историю
-        if (!animal.getName().equals("Растения") || !animal.getName().equals("Гусеница")) {
             animal.setMaxStep(animal.getMaxStep() + 1);
-        }
 
     }
 

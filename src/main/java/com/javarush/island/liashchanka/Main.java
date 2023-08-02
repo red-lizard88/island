@@ -114,6 +114,7 @@ public class Main {
         moveAnimal(animalsList);
         moveAnimal(animalsList);
         moveAnimal(animalsList);
+
 //        for (var animal : animalsList) {
 //            for (var animalMaxStep : animalsMaxStepMap().entrySet()) {
 //                if (animal.getName().equals(animalMaxStep.getKey())) {

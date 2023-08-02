@@ -12,9 +12,12 @@ public class Move {
         // Движение животных на клетках
         for (var animal : animalsList) {
             for (var animalMaxStep : animalsMaxStepMap().entrySet()) {
-                if (animal.getName().equals(animalMaxStep.getKey())) {
-
-                    if (!animal.getName().equals("Растения") || !animal.getName().equals("Гусеница")) {
+                if (animal.getName().equals(animalMaxStep.getKey())) { // Если не растения и не гусеница, то двигаемся
+                    boolean isPlant = false;
+                    boolean isGus = false;
+                    isPlant = animal.getName().equals("Растения");
+                    isGus = animal.getName().equals("Гусеница");
+                    if (!isPlant && !isGus) {
                         Animal.move(animalMaxStep.getValue(), animal);
                     }
                 }
