@@ -4,11 +4,11 @@ import com.javarush.island.liashchanka.abstracts.Animal;
 
 public abstract class AnimalFactoryAbstract extends Animal{
 
-    public AnimalFactoryAbstract(String name, int maxStep, double weight) {
-        super(name, maxStep, weight);
+    public AnimalFactoryAbstract(String name, double weight) {
+        super(name, weight);
     }
     public AnimalFactoryAbstract() {
-        super("Фабрика", 0, 0);
+        super("Фабрика", 0);
 
     }
 

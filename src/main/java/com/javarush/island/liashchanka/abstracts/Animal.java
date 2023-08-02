@@ -51,11 +51,10 @@ public abstract class Animal {
         this.weight = weight;
     }
 
-    public Animal(String name, int maxStep, double weight) {
-        this.maxStep = maxStep;
+    public Animal(String name, double weight) {
         this.weight = weight;
         this.name = name;
-        this.position = new Position(0, 0 );
+        this.position = new Position(0, 0);
     }
 
     public String getName() {
@@ -76,7 +75,7 @@ public abstract class Animal {
 
     @Override
     public String toString() {
-        return "Animal{"+ "hashCode:"+ hashCode() +
+        return "Animal{" + "hashCode:" + hashCode() +
                 ", maxStep=" + maxStep +
                 ", weight=" + weight +
                 ", isLive=" + isLive +
@@ -121,12 +120,11 @@ public abstract class Animal {
             if (oneStepXOrY == 0) {
                 if ((y != areaY - 1) && oneStepRightOrLeft == 0) {
                     y = y + 1;
-                }else if (y==0 && oneStepRightOrLeft == 0) {
+                } else if (y == 0 && oneStepRightOrLeft == 0) {
                     y = y + 1;
-                }
-                else if (y != areaY - 1 && y !=0 && oneStepRightOrLeft == 1) {
+                } else if (y != areaY - 1 && y != 0 && oneStepRightOrLeft == 1) {
                     y = y - 1;
-                }else if (y==0 && oneStepRightOrLeft == 1) {
+                } else if (y == 0 && oneStepRightOrLeft == 1) {
                     y = y + 1;
                 } else {
                     y = y - 1;
@@ -135,14 +133,13 @@ public abstract class Animal {
             } else {
                 if ((x != areaX - 1) && oneTopOrBottom == 0) {
                     x = x + 1;
-                }else if (x==0 && oneTopOrBottom == 0) {
+                } else if (x == 0 && oneTopOrBottom == 0) {
                     x = x + 1;
-                }
-                else if (x != areaX - 1 && x !=0  && oneTopOrBottom == 1) {
+                } else if (x != areaX - 1 && x != 0 && oneTopOrBottom == 1) {
                     x = x - 1;
-                } else if (x==0 && oneTopOrBottom == 1) {
+                } else if (x == 0 && oneTopOrBottom == 1) {
                     x = x + 1;
-                }else {
+                } else {
                     x = x - 1;
                 }
             }
@@ -152,25 +149,28 @@ public abstract class Animal {
 
         }
         animal.setPosition(new Position(x, y));
-
-
+        // Движение животного на один шаг и запись в историю
+        if (!animal.getName().equals("Растения") || !animal.getName().equals("Гусеница")) {
+            animal.setMaxStep(animal.getMaxStep() + 1);
+        }
 
     }
 
-    public static void eat(Animal iEatAnimal, Animal meEat){
-       // HashMap<String, HashMap<String, Integer>>
-        if (iEatAnimal.isLive){
-            if(meEat.isLive){
-                for(var AnimalNameAndNameToEat:animalsEatPersentMap().entrySet()) {
+    public static void eat(Animal iEatAnimal, Animal meEat) {
+        // HashMap<String, HashMap<String, Integer>>
+        if (iEatAnimal.isLive) {
+            if (meEat.isLive) {
+                for (var AnimalNameAndNameToEat : animalsEatPersentMap().entrySet()) {
                     var iEatString = AnimalNameAndNameToEat.getKey();
-                    if(iEatString.equals(iEatAnimal.getName())) {
+                    if (iEatString.equals(iEatAnimal.getName())) {
 
-                        for(var animalNameToEatAndPersent : AnimalNameAndNameToEat.getValue().entrySet()) {
-                            if(meEat.getName().equals(animalNameToEatAndPersent.getKey())) {
+                        for (var animalNameToEatAndPersent : AnimalNameAndNameToEat.getValue().entrySet()) {
+                            if (meEat.getName().equals(animalNameToEatAndPersent.getKey())) {
                                 SecureRandom randomAnimal = new SecureRandom();
                                 int randomAnimalToEat = randomAnimal.nextInt(100); // Рандом на сколько мы съедим
-                                if(randomAnimalToEat < animalNameToEatAndPersent.getValue()) { // На сколько процентов мы его съедим
+                                if (randomAnimalToEat < animalNameToEatAndPersent.getValue()) { // На сколько процентов мы его съедим
                                     meEat.setLive(false);
+                                    iEatAnimal.setMaxStep(0); // Если поел обнуляем максимальное количество шагов не поевши
                                 }
                             }
                         }

@@ -7,7 +7,7 @@ public class Wolf extends Animal implements Herbivorous {
     public Wolf() {
 
 
-        super("Волк", 3, 50);
+        super("Волк", 50);
 
     }
 

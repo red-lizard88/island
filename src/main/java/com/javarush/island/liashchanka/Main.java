@@ -6,16 +6,13 @@ import com.javarush.island.liashchanka.factory.AnimalFactory;
 import com.javarush.island.liashchanka.factory.AnimalFactoryAbstract;
 
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.javarush.island.liashchanka.animal.AnimalsEatPersentMap.animalsEatPersentMap;
 import static com.javarush.island.liashchanka.animal.AnimalsMaxCountMap.animalsMaxCountMap;
 import static com.javarush.island.liashchanka.animal.AnimalsMaxStepMap.animalsMaxStepMap;
-import static com.javarush.island.liashchanka.constants.Constants.areaX;
-import static com.javarush.island.liashchanka.constants.Constants.areaY;
+import static com.javarush.island.liashchanka.constants.Constants.*;
+import static com.javarush.island.liashchanka.functions.Move.moveAnimal;
 
 public class Main {
 
@@ -111,6 +108,43 @@ public class Main {
      //   }
 
 
+        // Движение животных на клетках, после нужен пересчет острова
+        moveAnimal(animalsList);
+        moveAnimal(animalsList);
+        moveAnimal(animalsList);
+        moveAnimal(animalsList);
+        moveAnimal(animalsList);
+//        for (var animal : animalsList) {
+//            for (var animalMaxStep : animalsMaxStepMap().entrySet()) {
+//                if (animal.getName().equals(animalMaxStep.getKey())) {
+//                    Animal.move(animalMaxStep.getValue(), animal);
+//                }
+//            }
+//        }
+
+        // Пересчитываем остров после хождения или размножения животных
+        for (int i = 0; i < areaY; i++) { // идем по строкам
+            for (int j = 0; j < areaX; j++) { // идем по столбцам
+                List<Animal> animalsListTemp = new ArrayList<>(); // Создаем временный остров
+
+                for (var animal : animalsList) {
+                    if (animal.getPosition().getX() == j && animal.getPosition().getY() == i) {
+                        animalsListTemp.add(animal);
+                    }
+                }
+
+                for (var positionAndAnimal : island.entrySet()) {
+                    if (positionAndAnimal.getKey().getX() == j && positionAndAnimal.getKey().getY() == i) {
+                        island.put(positionAndAnimal.getKey(), animalsListTemp);
+                    }
+                }
+
+            }
+        }
+
+
+
+
         // Размножение животных с учетом максимального количества на клетке
         for (var positionAndAnimal : island.entrySet()) {
             int countOfAnimal = 0;
@@ -147,56 +181,9 @@ public class Main {
         }
 
 
-        // for (var animalsEatPersent : animalsEatPersentMap().entrySet()) {
-        //if (animal.getName().equals(animalsEatPersent.getKey())) {
-        // System.out.println("Совпали "+animal);
 
 
-        // Position ourPosition = new Position(0,0);
-        //Animal.eat(animal, );
-        // System.out.println("Совпали после движения "+animal);
-        //    }
-
-
-        //Map<Position, List<Animal>> island = new HashMap<>();
-        // Движение животных на клетках через Остров
-//        for (var positionAndAnimal : island.entrySet()) {
-//            List<Animal> animalsListTemp = new ArrayList<>(); // Создаем временный остров
-//
-//            for (var animal : positionAndAnimal.getValue()) { // Выбираем одно животное для хода
-//                for (var animalMaxStep : animalsMaxStepMap().entrySet()) { // Проверяем максимальный ход животного
-//                    if (animal.getName().equals(animalMaxStep.getKey())) {
-//                        Animal.move(animalMaxStep.getValue(), animal); // Ходим животным
-//
-//                        animalsListTemp.add(animal);
-//                        System.out.println("Походил"+animal);
-//                    }
-//                }
-//
-//
-//                if (positionAndAnimal.getKey().hashCode() == animal.getPosition().hashCode()){
-//
-//                }
-//            }
-//            island.put(positionAndAnimal.getKey(), animalsListTemp);
-//        }
-
-
-//        for (var oneAnimal : animalsList) {
-//            System.out.println(oneAnimal);
-//        }
-
-
-        // Движение животных на клетках
-        for (var animal : animalsList) {
-            for (var animalMaxStep : animalsMaxStepMap().entrySet()) {
-                if (animal.getName().equals(animalMaxStep.getKey())) {
-                    Animal.move(animalMaxStep.getValue(), animal);
-                }
-            }
-        }
-
-        // Пересчитываем остров после хождения животных
+        // Пересчитываем остров после хождения или размножения животных
         for (int i = 0; i < areaY; i++) { // идем по строкам
             for (int j = 0; j < areaX; j++) { // идем по столбцам
                 List<Animal> animalsListTemp = new ArrayList<>(); // Создаем временный остров
@@ -215,6 +202,28 @@ public class Main {
 
             }
         }
+
+        for (var oneAnimal : animalsList) {
+            System.out.println(oneAnimal);
+        }
+
+        // Удаление из списка съеденных или отходивших ходы животных
+        Iterator<Animal> iterator = animalsList.iterator();
+        while(iterator.hasNext()){
+            Animal animal = iterator.next();
+            if(!animal.isLive() || animal.getMaxStep()>= allMaxStep){
+                iterator.remove();
+            }
+
+        }
+
+
+//        for (var animal: animalsList){
+//            if(!animal.isLive() || animal.getMaxStep()>=5){
+//                animalsList.remove(animal);
+//            }
+//
+//        }
 
 
         System.out.println("----------------------------------------------");

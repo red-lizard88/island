@@ -9,11 +9,11 @@ public class AnimalFactory extends AnimalFactoryAbstract {
 
 
     public AnimalFactory(String name, int maxStep, double weight) {
-        super(name, maxStep, weight);
+        super(name, weight);
     }
 
     public AnimalFactory() {
-        super("Фабрика", 0, 0);
+        super("Фабрика",  0);
 
     }
 
