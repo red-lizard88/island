@@ -99,19 +99,18 @@ public class Main {
 
                     SecureRandom randomAnimal = new SecureRandom();
                     int randomAnimalToEat = randomAnimal.nextInt(positionAndAnimal.getValue().size()); //Рандомное животное из листа в нашей Позиции
-                    if (positionAndAnimal.getValue().get(randomAnimalToEat).isLive()) {  // Если животное живое пробуем съесть
-                        Animal.eat(animal, positionAndAnimal.getValue().get(randomAnimalToEat));
-                    } else {
-                        randomAnimalToEat = randomAnimal.nextInt(positionAndAnimal.getValue().size()); //Рандомное животное из листа в нашей Позици
-                        Animal.eat(animal, positionAndAnimal.getValue().get(randomAnimalToEat));
+                    for (int j = 0; j < 10; j++) {                                                       // 5 раз пробуем кого-то съесть
+                        if (positionAndAnimal.getValue().get(randomAnimalToEat).isLive()) {  // Если животное живое пробуем съесть
+                            Animal.eat(animal, positionAndAnimal.getValue().get(randomAnimalToEat));
+                        }
+                        randomAnimalToEat = randomAnimal.nextInt(positionAndAnimal.getValue().size());
                     }
-
                 }
             }
         }
 
 
-        // Размножение животных
+        // Размножение животных с учетом максимального количества на клетке
         for (var positionAndAnimal : island.entrySet()) {
             int countOfAnimal = 0;
 

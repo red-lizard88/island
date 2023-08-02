@@ -169,7 +169,7 @@ public abstract class Animal {
                             if(meEat.getName().equals(animalNameToEatAndPersent.getKey())) {
                                 SecureRandom randomAnimal = new SecureRandom();
                                 int randomAnimalToEat = randomAnimal.nextInt(100); // Рандом на сколько мы съедим
-                                if(randomAnimalToEat <= animalNameToEatAndPersent.getValue()) { // На сколько процентов мы его съедим
+                                if(randomAnimalToEat < animalNameToEatAndPersent.getValue()) { // На сколько процентов мы его съедим
                                     meEat.setLive(false);
                                 }
                             }
