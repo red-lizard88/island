@@ -13,6 +13,7 @@ public class AnimalsMaxStepMap {
         HashMap<String, Integer> animalsMaxStepMap = new HashMap<>();
         animalsMaxStepMap.put("Волк", 3);
         animalsMaxStepMap.put("Кролик", 2);
+        animalsMaxStepMap.put("Растения", 0);
 
         return animalsMaxStepMap;
     }

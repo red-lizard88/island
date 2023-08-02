@@ -29,6 +29,7 @@ public class Main {
 
         Map<Position, List<Animal>> island = new HashMap<>();
 
+
         AnimalFactoryAbstract creator = new AnimalFactory();
 //        Animal ilya = creator.createAnimal("Волк");
 //
@@ -85,27 +86,67 @@ public class Main {
 
 
         // Вывод острова
-        for (var oneAnimal : island.entrySet()) {
-            System.out.println(oneAnimal);
-        }
+//        for (var oneAnimal : island.entrySet()) {
+//            System.out.println(oneAnimal);
+//        }
 
 
         // Поедание одно животное другого
+        for (int i = 0; i < 100; i++) {
 
-        for (var positionAndAnimal : island.entrySet()) {
-            for (var animal : positionAndAnimal.getValue()) {
+            for (var positionAndAnimal : island.entrySet()) {
+                for (var animal : positionAndAnimal.getValue()) {
 
-                SecureRandom randomAnimal = new SecureRandom();
-                int randomAnimalToEat = randomAnimal.nextInt(positionAndAnimal.getValue().size()); //Рандомное животное из листа в нашей Позиции
-                if (positionAndAnimal.getValue().get(randomAnimalToEat).isLive()) {  // Если животное живое пробуем съесть
-                    Animal.eat(animal, positionAndAnimal.getValue().get(randomAnimalToEat));
-                } else {
-                    randomAnimalToEat = randomAnimal.nextInt(positionAndAnimal.getValue().size()); //Рандомное животное из листа в нашей Позици
-                    Animal.eat(animal, positionAndAnimal.getValue().get(randomAnimalToEat));
+                    SecureRandom randomAnimal = new SecureRandom();
+                    int randomAnimalToEat = randomAnimal.nextInt(positionAndAnimal.getValue().size()); //Рандомное животное из листа в нашей Позиции
+                    if (positionAndAnimal.getValue().get(randomAnimalToEat).isLive()) {  // Если животное живое пробуем съесть
+                        Animal.eat(animal, positionAndAnimal.getValue().get(randomAnimalToEat));
+                    } else {
+                        randomAnimalToEat = randomAnimal.nextInt(positionAndAnimal.getValue().size()); //Рандомное животное из листа в нашей Позици
+                        Animal.eat(animal, positionAndAnimal.getValue().get(randomAnimalToEat));
+                    }
+
                 }
-
             }
         }
+
+
+        // Размножение животных
+        for (var positionAndAnimal : island.entrySet()) {
+            int countOfAnimal = 0;
+
+            Map<String, List<Animal>> islandGrupByNameinPosition = new HashMap<>();
+
+            for (var animalName : animalsMaxCountMap().entrySet()) { // Ищем имя животное и максимальное его количество
+                List<Animal> animalsListTemp = new ArrayList<>();
+                for (var animal : positionAndAnimal.getValue()) {
+                    if (animal.getName().equals(animalName.getKey())) {
+                        animalsListTemp.add(animal);
+                        countOfAnimal = animalName.getValue();
+                    }
+                }
+                islandGrupByNameinPosition.put(animalName.getKey(), animalsListTemp); // Промежуточный map с одной позицией одного вида животных
+            }
+
+            for (var animalName : islandGrupByNameinPosition.entrySet()) {
+                SecureRandom randomAnimal = new SecureRandom();
+                if((countOfAnimal - animalName.getValue().size())>0) {
+                    int randomAnimalToBorn = randomAnimal.nextInt((countOfAnimal - animalName.getValue().size())); // Рандомное количество животных родиться, но не более максимум
+                    for (int m = 0; m < randomAnimalToBorn; m++) {
+                        Animal animal = creator.createAnimal(animalName.getKey()); // Создаем в фабрике рандомное количество конкретных объектов животных
+
+                        animal.setPosition(positionAndAnimal.getKey());
+                        animal.setId(animalName.getKey() + "-new-" + m + "-random-" + randomAnimalToBorn); // Указываем уникальное id животного
+//
+                        animalsList.add(animal); // Сохраняем в лист животных
+                    }
+                }
+
+
+            }
+
+        }
+
 
         // for (var animalsEatPersent : animalsEatPersentMap().entrySet()) {
         //if (animal.getName().equals(animalsEatPersent.getKey())) {
@@ -179,10 +220,11 @@ public class Main {
 
         System.out.println("----------------------------------------------");
         // Вывод острова
-        for (var oneAnimal : island.entrySet()) {
-            System.out.println(oneAnimal);
-        }
+//        for (var oneAnimal : island.entrySet()) {
+//            System.out.println(oneAnimal);
+//        }
 
+        // Вывод животных
         System.out.println("!!!!----------------------------------------------");
         for (var oneAnimal : animalsList) {
             System.out.println(oneAnimal);
