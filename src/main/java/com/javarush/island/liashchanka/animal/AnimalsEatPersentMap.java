@@ -44,14 +44,14 @@ public class AnimalsEatPersentMap {
         wolfEatPersentMap.put("Растения", 100);
 
         HashMap<String, Integer> plantEatPersentMap = new HashMap<>();
-        wolfEatPersentMap.put("Волк", 0);
+        wolfEatPersentMap.put("Волк", 0); //0
         wolfEatPersentMap.put("Удав", 0);
         wolfEatPersentMap.put("Лиса", 0);
         wolfEatPersentMap.put("Медведь", 0);
         wolfEatPersentMap.put("Орел", 0);
         wolfEatPersentMap.put("Лошадь", 0);
         wolfEatPersentMap.put("Олень", 0);
-        wolfEatPersentMap.put("Кролик", 0);
+        wolfEatPersentMap.put("Кролик", 60); //0
         wolfEatPersentMap.put("Мышь", 0);
         wolfEatPersentMap.put("Коза", 0);
         wolfEatPersentMap.put("Овца", 0);
@@ -59,7 +59,7 @@ public class AnimalsEatPersentMap {
         wolfEatPersentMap.put("Буйвол", 0);
         wolfEatPersentMap.put("Утка", 0);
         wolfEatPersentMap.put("Гусеница", 0);
-        wolfEatPersentMap.put("Растения", 0);
+        wolfEatPersentMap.put("Растения", 0); //0
 
         HashMap<String, HashMap<String, Integer>> animalsEatPersentMap = new HashMap<>();
         animalsEatPersentMap.put("Волк", wolfEatPersentMap);

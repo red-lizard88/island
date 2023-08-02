@@ -92,22 +92,23 @@ public class Main {
 
 
         // Поедание одно животное другого
-        for (int i = 0; i < 100; i++) {
-
+    //    for (int i = 0; i < 100; i++) {
             for (var positionAndAnimal : island.entrySet()) {
                 for (var animal : positionAndAnimal.getValue()) {
 
                     SecureRandom randomAnimal = new SecureRandom();
-                    int randomAnimalToEat = randomAnimal.nextInt(positionAndAnimal.getValue().size()); //Рандомное животное из листа в нашей Позиции
-                    for (int j = 0; j < 10; j++) {                                                       // 5 раз пробуем кого-то съесть
-                        if (positionAndAnimal.getValue().get(randomAnimalToEat).isLive()) {  // Если животное живое пробуем съесть
-                            Animal.eat(animal, positionAndAnimal.getValue().get(randomAnimalToEat));
+                    int positionRandom = positionAndAnimal.getValue().size();
+                    int randomAnimalToEat = randomAnimal.nextInt(positionRandom); //Рандомное животное из листа в нашей Позиции
+                   // for (int j = 0; j < 1000; j++) {
+                       Animal meEatAnimal = positionAndAnimal.getValue().get(randomAnimalToEat);
+                        if (meEatAnimal.isLive()) {  // Если животное живое пробуем съесть
+                            Animal.eat(animal, meEatAnimal);
                         }
-                        randomAnimalToEat = randomAnimal.nextInt(positionAndAnimal.getValue().size());
-                    }
+                       // randomAnimalToEat = randomAnimal.nextInt(positionAndAnimal.getValue().size());
+                        // }
                 }
             }
-        }
+     //   }
 
 
         // Размножение животных с учетом максимального количества на клетке
@@ -140,7 +141,6 @@ public class Main {
                         animalsList.add(animal); // Сохраняем в лист животных
                     }
                 }
-
 
             }
 

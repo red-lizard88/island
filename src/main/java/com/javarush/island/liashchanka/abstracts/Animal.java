@@ -162,8 +162,8 @@ public abstract class Animal {
         if (iEatAnimal.isLive){
             if(meEat.isLive){
                 for(var AnimalNameAndNameToEat:animalsEatPersentMap().entrySet()) {
-                    if(AnimalNameAndNameToEat.getKey().equals(iEatAnimal.getName())) {
-
+                    var iEatString = AnimalNameAndNameToEat.getKey();
+                    if(iEatString.equals(iEatAnimal.getName())) {
 
                         for(var animalNameToEatAndPersent : AnimalNameAndNameToEat.getValue().entrySet()) {
                             if(meEat.getName().equals(animalNameToEatAndPersent.getKey())) {
