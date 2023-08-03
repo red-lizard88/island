@@ -17,33 +17,33 @@ import static com.javarush.island.liashchanka.constants.Constants.areaY;
 public class IslandCreate {
 
 
-    // Создаем объекты животных на начальной арене с максимальным количеством на клетке
+    // РЎРѕР·РґР°РЅРёРµ РѕСЃС‚СЂРѕРІР° СЃ СЂРѕР¶РґРµРЅРёРµРј СЂР°РЅРґРѕРјРЅРѕ РєРѕР»РёС‡РµСЃС‚РІР° Р¶РёРІРѕС‚РЅС‹С…
     public static void islandCreate (List<Animal> animalsList, Map<Position, List<Animal>> island){
 
-        for (int i = 0; i < areaY; i++) { // идем по строкам
-            for (int j = 0; j < areaX; j++) { // идем по столбцам
+        for (int i = 0; i < areaY; i++) {
+            for (int j = 0; j < areaX; j++) {
                 AnimalFactoryAbstract creator = new AnimalFactory();
-                Position position = new Position(j, i); // Записываем позицию
-                List<Animal> animalsListTemp = new ArrayList<>(); // Создаем временный остров
+                Position position = new Position(j, i); // РџРѕР·РёС†РёСЏ Р¶РёРІРѕС‚РЅРѕРіРѕ
+                List<Animal> animalsListTemp = new ArrayList<>(); // Р’СЂРµРјРµРЅРЅС‹Р№ Р»РёСЃС‚
 
                 for (var animalName : animalsMaxCountMap().entrySet()) {
 
-                    // Рандомное количество животных на клетке
+                    // Р“РµРЅРµСЂРёРј СЂР°РЅРґРѕРјРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р¶РёРІРѕС‚РЅС‹С…
                     SecureRandom randomCount = new SecureRandom();
                     int randomAnimalCount = randomCount.nextInt(animalName.getValue());
 
                     for (int m = 0; m < randomAnimalCount; m++) {
-                        Animal animal = creator.createAnimal(animalName.getKey()); // Создаем в фабрике рандомное количество конкретных объектов животных
+                        Animal animal = creator.createAnimal(animalName.getKey()); // Р¤Р°Р±СЂРёРєР° Р¶РёРІРѕС‚РЅС‹С…
                         animal.setPosition(position);
-                        animal.setId(animalName.getKey() + "-" + j + i + m); // Указываем уникальное id животного
+                        animal.setId(animalName.getKey() + "-" + j + i + m); // Р“РµРЅРµСЂР°С†РёСЏ СѓРЅРёРєР°Р»СЊРЅРѕРіРѕ id Р¶РёРІРѕС‚РЅРѕРіРѕ
 
-                        animalsList.add(animal); // Сохраняем в лист животных
-                        animalsListTemp.add(animal); // Сохраняем во временный лист для острова
+                        animalsList.add(animal); // Р”РѕР±Р°РІР»СЏРµРј РІ Р»РёСЃС‚
+                        animalsListTemp.add(animal); // Р”РѕР±Р°РІР»СЏРµРј РІРѕ РІСЂРµРјРµРЅРЅС‹Р№ Р»РёСЃС‚
 
                     }
 
                 }
-                // Добавляем в остров на конкретную позицию конкретный лист животных
+                // Р”РѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ РІ РћСЃС‚СЂРѕРІ
                 island.put(position, animalsListTemp);
             }
         }

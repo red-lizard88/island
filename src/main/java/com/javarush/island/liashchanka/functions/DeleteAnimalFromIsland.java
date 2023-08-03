@@ -9,7 +9,7 @@ import static com.javarush.island.liashchanka.constants.Constants.allMaxStep;
 
 public class DeleteAnimalFromIsland {
 
-    // Удаление из списка съеденных или отходивших ходы животных
+    // РЈРґР°Р»РµРЅРёРµ СѓРјРµСЂС€РёС… РёР»Рё РѕС‚С…РѕРґРёРІС€РёС… Р¶РёРІРѕС‚РЅС‹С… СЃ Р›РёСЃС‚Р°
     public static void deleteAnimalFromIsland(List<Animal> animalsList){
     Iterator<Animal> iterator = animalsList.iterator();
         while(iterator.hasNext()){

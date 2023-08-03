@@ -16,7 +16,7 @@ import static com.javarush.island.liashchanka.functions.IslandRecalculation.make
 
 public class BornAnimal {
 
-    // Размножение животных с учетом максимального количества на клетке
+    //Р РѕР¶РґРµРЅРёРµ Р¶РёРІРѕС‚РЅС‹С… РІ РєРѕРЅС†Рµ РїРµСЂРµСѓС‡РµС‚ РѕСЃС‚СЂРѕРІР°
     public static void makeBornAnimal(List<Animal> animalsList, Map<Position, List<Animal>> island){
 
         for (var positionAndAnimal : island.entrySet()) {
@@ -24,7 +24,7 @@ public class BornAnimal {
             AnimalFactoryAbstract creator = new AnimalFactory();
             Map<String, List<Animal>> islandGrupByNameinPosition = new HashMap<>();
 
-            for (var animalName : animalsMaxCountMap().entrySet()) { // Ищем имя животное и максимальное его количество
+            for (var animalName : animalsMaxCountMap().entrySet()) { // РЎРєРѕР»СЊРєРѕ РјР°РєСЃРёРјСѓРј Р¶РёРІРѕС‚РЅС‹С… РЅР° РєР°СЂС‚Рµ
                 List<Animal> animalsListTemp = new ArrayList<>();
                 for (var animal : positionAndAnimal.getValue()) {
                     if (animal.getName().equals(animalName.getKey())) {
@@ -32,26 +32,26 @@ public class BornAnimal {
                         countOfAnimal = animalName.getValue();
                     }
                 }
-                islandGrupByNameinPosition.put(animalName.getKey(), animalsListTemp); // Промежуточный map с одной позицией одного вида животных
+                islandGrupByNameinPosition.put(animalName.getKey(), animalsListTemp); // Р“СЂСѓРїРїРёСЂРѕРІРєР°
             }
 
             for (var animalName : islandGrupByNameinPosition.entrySet()) {
                 SecureRandom randomAnimal = new SecureRandom();
                 if((countOfAnimal - animalName.getValue().size())>0 && (countOfAnimal - animalName.getValue().size())!=1) {
-                    int randomAnimalToBorn = randomAnimal.nextInt((countOfAnimal - animalName.getValue().size())); // Рандомное количество животных родиться, но не более максимум
+                    int randomAnimalToBorn = randomAnimal.nextInt((countOfAnimal - animalName.getValue().size())); // РЎРєРѕР»СЊРєРѕ СЂР°РЅРґРѕРјРЅРѕ СЃРѕР·РґР°РµРј Р¶РёРІРѕС‚РЅС‹С…
                     for (int m = 0; m < randomAnimalToBorn; m++) {
-                        Animal animal = creator.createAnimal(animalName.getKey()); // Создаем в фабрике рандомное количество конкретных объектов животных
+                        Animal animal = creator.createAnimal(animalName.getKey()); // Р¤Р°Р±СЂРёРєР° РїРѕ СЃРѕР·РґР°РЅРёСЋ Р¶РёРІРѕС‚РЅС‹С…
 
                         animal.setPosition(positionAndAnimal.getKey());
-                        animal.setId(animalName.getKey() + "-new-" + m + "-random-" + randomAnimalToBorn); // Указываем уникальное id животного
-                        animalsList.add(animal); // Сохраняем в лист животных
+                        animal.setId(animalName.getKey() + "-new-" + m + "-random-" + randomAnimalToBorn); // РќР°РїРёСЃР°РЅРёРµ СѓРЅРёРєР°Р»СЊРЅРѕРµ id
+                        animalsList.add(animal); // РґРѕР±Р°РІР»СЏРµС‚ Р¶РёРІРѕС‚РЅРѕРµ РІ Р»РёСЃС‚
                     }
                 }
 
             }
         }
 
-        // Пересчитываем остров после хождения или размножения животных
+        // РџРµСЂРµСѓС‡РµС‚ РѕСЃС‚СЂРѕРІР°
         makeIslandRecalculation(animalsList, island);
 
 

@@ -12,12 +12,12 @@ import static com.javarush.island.liashchanka.constants.Constants.areaY;
 
 public class IslandRecalculation {
 
-    // Пересчитываем остров после хождения, размножения или удаления мертвых животных
+    // РџРµСЂРµСѓС‡РµС‚ СѓСЃС‚СЂРѕРІР°
     public static void makeIslandRecalculation(List<Animal> animalsList, Map<Position, List<Animal>>  island){
 
-        for (int i = 0; i < areaY; i++) { // идем по строкам
-            for (int j = 0; j < areaX; j++) { // идем по столбцам
-                List<Animal> animalsListTemp = new ArrayList<>(); // Создаем временный остров
+        for (int i = 0; i < areaY; i++) {
+            for (int j = 0; j < areaX; j++) {
+                List<Animal> animalsListTemp = new ArrayList<>();
 
                 for (var animal : animalsList) {
                     if (animal.getPosition().getX() == j && animal.getPosition().getY() == i) {
