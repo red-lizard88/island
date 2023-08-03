@@ -8,6 +8,9 @@ import com.javarush.island.liashchanka.functions.TaskThreads;
 
 import java.security.SecureRandom;
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import static com.javarush.island.liashchanka.animal.AnimalsEatPersentMap.animalsEatPersentMap;
 import static com.javarush.island.liashchanka.animal.AnimalsMaxCountMap.animalsMaxCountMap;
@@ -45,12 +48,14 @@ public class Main {
 //        }
 
         TaskThreads taskThreads = new TaskThreads(animalsList, island);
-        Thread thread1 = new Thread(taskThreads);
-        thread1.start();
+//        Thread thread1 = new Thread(taskThreads);
+//        thread1.start();
+//
+//        Thread thread2 = new Thread(taskThreads);
+//        thread2.start();
 
-        Thread thread2 = new Thread(taskThreads);
-        thread2.start();
-
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
+        executorService.scheduleAtFixedRate(taskThreads, 0, 1, TimeUnit.SECONDS);
 
 
 //        System.out.println("@@--------------------------------------------------");

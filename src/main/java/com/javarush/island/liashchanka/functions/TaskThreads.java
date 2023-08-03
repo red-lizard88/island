@@ -10,12 +10,11 @@ import static com.javarush.island.liashchanka.functions.EatAnimal.makeEatAnimal;
 import static com.javarush.island.liashchanka.functions.IslandCreate.islandCreate;
 import static com.javarush.island.liashchanka.functions.Move.moveAnimal;
 
-public class TaskThreads implements Runnable{
+public class TaskThreads implements Runnable {
 
 
-
-     List<Animal> animalsList;
-      Map<Position, List<Animal>> island;
+    volatile List<Animal> animalsList;
+    volatile Map<Position, List<Animal>> island;
 
     public TaskThreads(List<Animal> animalsList, Map<Position, List<Animal>> island) {
         this.animalsList = animalsList;
@@ -46,24 +45,21 @@ public class TaskThreads implements Runnable{
 //        islandCreate(animalsList, island);
 
 
-
         // Поедание одно животное другого, удаление съеденных и переучет на острове живых животных
-          makeEatAnimal(animalsList, island);
-
+        makeEatAnimal(animalsList, island);
 
 
         // Движение животных на клетках, удаление отходивших и переучет на острове живых
-          moveAnimal(animalsList, island);
-
+        moveAnimal(animalsList, island);
 
 
         // Размножение животных с учетом максимального количества на клетке, переучет острова после размножения
-          makeBornAnimal(animalsList, island);
+        makeBornAnimal(animalsList, island);
 
 
         System.out.println("@@--------------------------------------------------");
         Iterator<Animal> iterator = animalsList.iterator();
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             Animal animal = iterator.next();
             System.out.println(animal);
         }
