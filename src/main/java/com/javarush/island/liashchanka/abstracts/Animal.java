@@ -16,7 +16,7 @@ public abstract class Animal {
     private String name;
     private String id;
 
-    private boolean isLive = true;
+     private boolean isLive = true;
 
     public boolean isLive() {
         return isLive;
