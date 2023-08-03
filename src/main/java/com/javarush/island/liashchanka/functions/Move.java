@@ -1,14 +1,18 @@
 package com.javarush.island.liashchanka.functions;
 
 import com.javarush.island.liashchanka.abstracts.Animal;
+import com.javarush.island.liashchanka.animal.Position;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.javarush.island.liashchanka.animal.AnimalsMaxStepMap.animalsMaxStepMap;
+import static com.javarush.island.liashchanka.functions.DeleteAnimalFromIsland.deleteAnimalFromIsland;
+import static com.javarush.island.liashchanka.functions.IslandRecalculation.makeIslandRecalculation;
 
 public class Move {
 
-    public static void moveAnimal(List<Animal> animalsList) {
+    public static void moveAnimal(List<Animal> animalsList, Map<Position, List<Animal>> island) {
         // Движение животных на клетках
         for (var animal : animalsList) {
             for (var animalMaxStep : animalsMaxStepMap().entrySet()) {
@@ -23,5 +27,11 @@ public class Move {
                 }
             }
         }
+
+        // Удаление из списка съеденных или отходивших ходы животных
+        deleteAnimalFromIsland(animalsList);
+
+        // Пересчитываем остров после хождения или размножения животных
+        makeIslandRecalculation(animalsList, island);
     }
 }

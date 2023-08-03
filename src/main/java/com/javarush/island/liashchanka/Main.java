@@ -12,14 +12,15 @@ import static com.javarush.island.liashchanka.animal.AnimalsEatPersentMap.animal
 import static com.javarush.island.liashchanka.animal.AnimalsMaxCountMap.animalsMaxCountMap;
 import static com.javarush.island.liashchanka.animal.AnimalsMaxStepMap.animalsMaxStepMap;
 import static com.javarush.island.liashchanka.constants.Constants.*;
+import static com.javarush.island.liashchanka.functions.BornAnimal.makeBornAnimal;
+import static com.javarush.island.liashchanka.functions.EatAnimal.makeEatAnimal;
+import static com.javarush.island.liashchanka.functions.IslandCreate.islandCreate;
+import static com.javarush.island.liashchanka.functions.IslandRecalculation.makeIslandRecalculation;
 import static com.javarush.island.liashchanka.functions.Move.moveAnimal;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        //  List<String> animalsNameList = Arrays.asList("Волк", "Кролик");
-
 
         List<Animal> animalsList = new ArrayList<>();
 
@@ -27,54 +28,10 @@ public class Main {
         Map<Position, List<Animal>> island = new HashMap<>();
 
 
-        AnimalFactoryAbstract creator = new AnimalFactory();
-//        Animal ilya = creator.createAnimal("Волк");
-//
-//        Animal ann = creator.createAnimal("Кролик");
-
-        //System.out.println("Start: " + ilya);
-        // System.out.println("Start: " + ann);
-
-
-//        for (int i = 0; i < 10; i++) {
-//
-//        Position newPosition = ilya.move(ilya.getPosition());
-//        Position newPosition2 = ann.move(ann.getPosition());
-//        ilya.setPosition(newPosition);
-//        ann.setPosition(newPosition2);
-//
-//        System.out.println("End: " + ilya);
-//        System.out.println("End: " + ann);
-//        }
 
 
         // Создаем объекты животных на начальной арене с максимальным количеством на клетке
-        for (int i = 0; i < areaY; i++) { // идем по строкам
-            for (int j = 0; j < areaX; j++) { // идем по столбцам
-                Position position = new Position(j, i); // Записываем позицию
-                List<Animal> animalsListTemp = new ArrayList<>(); // Создаем временный остров
-
-                for (var animalName : animalsMaxCountMap().entrySet()) {
-
-                    // Рандомное количество животных на клетке
-                    SecureRandom randomCount = new SecureRandom();
-                    int randomAnimalCount = randomCount.nextInt(animalName.getValue());
-
-                    for (int m = 0; m < randomAnimalCount; m++) {
-                        Animal animal = creator.createAnimal(animalName.getKey()); // Создаем в фабрике рандомное количество конкретных объектов животных
-                        animal.setPosition(position);
-                        animal.setId(animalName.getKey() + "-" + j + i + m); // Указываем уникальное id животного
-
-                        animalsList.add(animal); // Сохраняем в лист животных
-                        animalsListTemp.add(animal); // Сохраняем во временный лист для острова
-
-                    }
-
-                }
-                // Добавляем в остров на конкретную позицию конкретный лист животных
-                island.put(position, animalsListTemp);
-            }
-        }
+        islandCreate(animalsList, island);
 
 
 //        for (var oneAnimal : animalsList) {
@@ -88,32 +45,17 @@ public class Main {
 //        }
 
 
-        // Поедание одно животное другого
-    //    for (int i = 0; i < 100; i++) {
-            for (var positionAndAnimal : island.entrySet()) {
-                for (var animal : positionAndAnimal.getValue()) {
-
-                    SecureRandom randomAnimal = new SecureRandom();
-                    int positionRandom = positionAndAnimal.getValue().size();
-                    int randomAnimalToEat = randomAnimal.nextInt(positionRandom); //Рандомное животное из листа в нашей Позиции
-                   // for (int j = 0; j < 1000; j++) {
-                       Animal meEatAnimal = positionAndAnimal.getValue().get(randomAnimalToEat);
-                        if (meEatAnimal.isLive()) {  // Если животное живое пробуем съесть
-                            Animal.eat(animal, meEatAnimal);
-                        }
-                       // randomAnimalToEat = randomAnimal.nextInt(positionAndAnimal.getValue().size());
-                        // }
-                }
-            }
-     //   }
+        // Поедание одно животное другого, удаление съеденных и переучет на острове живых животных
+          makeEatAnimal(animalsList, island);
 
 
-        // Движение животных на клетках, после нужен пересчет острова
-        moveAnimal(animalsList);
-        moveAnimal(animalsList);
-        moveAnimal(animalsList);
-        moveAnimal(animalsList);
-        moveAnimal(animalsList);
+
+        // Движение животных на клетках, удаление отходивших и переучет на острове живых
+        moveAnimal(animalsList, island);
+        moveAnimal(animalsList, island);
+        moveAnimal(animalsList, island);
+        moveAnimal(animalsList, island);
+        moveAnimal(animalsList, island);
 
 //        for (var animal : animalsList) {
 //            for (var animalMaxStep : animalsMaxStepMap().entrySet()) {
@@ -123,108 +65,23 @@ public class Main {
 //            }
 //        }
 
-        // Пересчитываем остров после хождения или размножения животных
-        for (int i = 0; i < areaY; i++) { // идем по строкам
-            for (int j = 0; j < areaX; j++) { // идем по столбцам
-                List<Animal> animalsListTemp = new ArrayList<>(); // Создаем временный остров
-
-                for (var animal : animalsList) {
-                    if (animal.getPosition().getX() == j && animal.getPosition().getY() == i) {
-                        animalsListTemp.add(animal);
-                    }
-                }
-
-                for (var positionAndAnimal : island.entrySet()) {
-                    if (positionAndAnimal.getKey().getX() == j && positionAndAnimal.getKey().getY() == i) {
-                        island.put(positionAndAnimal.getKey(), animalsListTemp);
-                    }
-                }
-
-            }
-        }
 
 
 
 
-        // Размножение животных с учетом максимального количества на клетке
-        for (var positionAndAnimal : island.entrySet()) {
-            int countOfAnimal = 0;
 
-            Map<String, List<Animal>> islandGrupByNameinPosition = new HashMap<>();
 
-            for (var animalName : animalsMaxCountMap().entrySet()) { // Ищем имя животное и максимальное его количество
-                List<Animal> animalsListTemp = new ArrayList<>();
-                for (var animal : positionAndAnimal.getValue()) {
-                    if (animal.getName().equals(animalName.getKey())) {
-                        animalsListTemp.add(animal);
-                        countOfAnimal = animalName.getValue();
-                    }
-                }
-                islandGrupByNameinPosition.put(animalName.getKey(), animalsListTemp); // Промежуточный map с одной позицией одного вида животных
-            }
-
-            for (var animalName : islandGrupByNameinPosition.entrySet()) {
-                SecureRandom randomAnimal = new SecureRandom();
-                if((countOfAnimal - animalName.getValue().size())>0) {
-                    int randomAnimalToBorn = randomAnimal.nextInt((countOfAnimal - animalName.getValue().size())); // Рандомное количество животных родиться, но не более максимум
-                    for (int m = 0; m < randomAnimalToBorn; m++) {
-                        Animal animal = creator.createAnimal(animalName.getKey()); // Создаем в фабрике рандомное количество конкретных объектов животных
-
-                        animal.setPosition(positionAndAnimal.getKey());
-                        animal.setId(animalName.getKey() + "-new-" + m + "-random-" + randomAnimalToBorn); // Указываем уникальное id животного
-//
-                        animalsList.add(animal); // Сохраняем в лист животных
-                    }
-                }
-
-            }
-
-        }
+        // Размножение животных с учетом максимального количества на клетке, переучет острова после размножения
+        makeBornAnimal(animalsList, island);
 
 
 
-
-        // Пересчитываем остров после хождения или размножения животных
-        for (int i = 0; i < areaY; i++) { // идем по строкам
-            for (int j = 0; j < areaX; j++) { // идем по столбцам
-                List<Animal> animalsListTemp = new ArrayList<>(); // Создаем временный остров
-
-                for (var animal : animalsList) {
-                    if (animal.getPosition().getX() == j && animal.getPosition().getY() == i) {
-                        animalsListTemp.add(animal);
-                    }
-                }
-
-                for (var positionAndAnimal : island.entrySet()) {
-                    if (positionAndAnimal.getKey().getX() == j && positionAndAnimal.getKey().getY() == i) {
-                        island.put(positionAndAnimal.getKey(), animalsListTemp);
-                    }
-                }
-
-            }
-        }
 
         for (var oneAnimal : animalsList) {
             System.out.println(oneAnimal);
         }
 
-        // Удаление из списка съеденных или отходивших ходы животных
-        Iterator<Animal> iterator = animalsList.iterator();
-        while(iterator.hasNext()){
-            Animal animal = iterator.next();
-            if(!animal.isLive() || animal.getMaxStep()>= allMaxStep){
-                iterator.remove();
-            }
 
-        }
-
-
-//        for (var animal: animalsList){
-//            if(!animal.isLive() || animal.getMaxStep()>=5){
-//                animalsList.remove(animal);
-//            }
-//
-//        }
 
 
         System.out.println("----------------------------------------------");
