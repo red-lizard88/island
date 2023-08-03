@@ -37,7 +37,7 @@ public class BornAnimal {
 
             for (var animalName : islandGrupByNameinPosition.entrySet()) {
                 SecureRandom randomAnimal = new SecureRandom();
-                if((countOfAnimal - animalName.getValue().size())>0) {
+                if((countOfAnimal - animalName.getValue().size())>0 && (countOfAnimal - animalName.getValue().size())!=1) {
                     int randomAnimalToBorn = randomAnimal.nextInt((countOfAnimal - animalName.getValue().size())); // Рандомное количество животных родиться, но не более максимум
                     for (int m = 0; m < randomAnimalToBorn; m++) {
                         Animal animal = creator.createAnimal(animalName.getKey()); // Создаем в фабрике рандомное количество конкретных объектов животных

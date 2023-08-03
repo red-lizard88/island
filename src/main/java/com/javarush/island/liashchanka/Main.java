@@ -55,8 +55,9 @@ public class Main {
 //        thread2.start();
 
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
-        executorService.scheduleAtFixedRate(taskThreads, 0, 1, TimeUnit.SECONDS);
+        executorService.scheduleAtFixedRate(taskThreads, 0, periodSeconds, TimeUnit.SECONDS);
 
+        System.out.println("\uD83D\uDC3B");
 
 //        System.out.println("@@--------------------------------------------------");
 //        for (var oneAnimal : taskThreads.getAnimalsList()) {

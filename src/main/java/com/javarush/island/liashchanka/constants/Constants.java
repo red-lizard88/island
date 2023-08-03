@@ -2,12 +2,15 @@ package com.javarush.island.liashchanka.constants;
 
 public class Constants {
 
-    //Размер острова
+    //Р Р°Р·РјРµСЂ РѕСЃС‚СЂРѕРІР°
     public static final int areaX = 5;
     public static final int areaY = 3;
 
-    //Сколько шагов может сделать животное не разу не поевши
+    //РЎРєРѕР»СЊРєРѕ С€Р°РіРѕРІ РјРѕР¶РµС‚ СЃРґРµР»Р°С‚СЊ Р¶РёРІРѕС‚РЅРѕРµ РЅРµ СЂР°Р·Сѓ РЅРµ РїРѕРµРІС€Рё
     public static final int allMaxStep = 5;
+
+    // РЎРєРѕР»СЊРєРѕ СЃРµРєСѓРЅРґ РґР»РёС‚СЊСЃСЏ РѕРґРёРЅ РґРµРЅСЊ
+    public static final int periodSeconds = 1;
 
 
 
