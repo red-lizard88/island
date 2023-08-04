@@ -1,9 +1,7 @@
 package com.javarush.island.liashchanka.factory;
 
 import com.javarush.island.liashchanka.abstracts.Animal;
-import com.javarush.island.liashchanka.animals.Plant;
-import com.javarush.island.liashchanka.animals.Rabbit;
-import com.javarush.island.liashchanka.animals.Wolf;
+import com.javarush.island.liashchanka.animals.*;
 
 public class AnimalFactory extends AnimalFactoryAbstract {
 
@@ -23,6 +21,9 @@ public class AnimalFactory extends AnimalFactoryAbstract {
             case "Волк" -> new Wolf();
             case "Кролик" -> new Rabbit();
             case "Растения" -> new Plant();
+            case "Удав" -> new Boa();
+            case "Лиса" -> new Fox();
+            case "Медведь" -> new Fox();
             default -> null;
         };
 

@@ -58,7 +58,7 @@ public class EatAnimal {
 //        }
 //----------------------------
         // Удаление умерших и отходивших животных
-         deleteAnimalFromIsland(animalsList);
+//         deleteAnimalFromIsland(animalsList);
 
         // Переучет острова
         makeIslandRecalculation(animalsList, island);

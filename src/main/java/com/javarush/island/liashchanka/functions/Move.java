@@ -29,7 +29,7 @@ public class Move {
         }
 
         // Удаление из списка съеденных или отходивших ходы животных
-        deleteAnimalFromIsland(animalsList);
+//        deleteAnimalFromIsland(animalsList);
 
         // Пересчитываем остров после хождения или размножения животных
         makeIslandRecalculation(animalsList, island);

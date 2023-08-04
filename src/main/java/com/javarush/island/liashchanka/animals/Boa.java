@@ -1,15 +1,12 @@
 package com.javarush.island.liashchanka.animals;
 
 import com.javarush.island.liashchanka.abstracts.Animal;
-import com.javarush.island.liashchanka.abstracts.Herbivorous;
 import com.javarush.island.liashchanka.abstracts.Predatory;
 
-public class Wolf extends Animal implements Predatory {
-    public Wolf() {
+public class Boa extends Animal implements Predatory {
 
-
-        super("Волк", 50);
-
+    public Boa() {
+        super("Удав", 15);
     }
 
 

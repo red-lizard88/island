@@ -7,6 +7,7 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import static com.javarush.island.liashchanka.functions.Analytics.*;
 import static com.javarush.island.liashchanka.functions.BornAnimal.makeBornAnimal;
 import static com.javarush.island.liashchanka.functions.BornPlant.makeBornPlant;
 import static com.javarush.island.liashchanka.functions.EatAnimal.makeEatAnimal;
@@ -18,6 +19,7 @@ public class TaskThreads implements Runnable {
 
     volatile List<Animal> animalsList;
     volatile Map<Position, List<Animal>> island;
+
 
     public TaskThreads(List<Animal> animalsList, Map<Position, List<Animal>> island) {
         this.animalsList = animalsList;
@@ -46,13 +48,21 @@ public class TaskThreads implements Runnable {
     public void run() {
 
 
-        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
 
         for (int i = 0; i < 5; i++) {
             executorService.execute(new TaskThreadsFunctions(animalsList, island, i));
         }
-        
 
+        makeAnalytics(animalsList, island);
+        System.out.println("@@--------------------------------------------------");
+
+
+//        Iterator<Animal>  iterator = animalsList.iterator();
+//        while (iterator.hasNext()) {
+//            Animal animal = iterator.next();
+//            System.out.println(animal);
+//        }
 
 
 

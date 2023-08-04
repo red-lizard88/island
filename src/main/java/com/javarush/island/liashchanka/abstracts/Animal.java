@@ -12,7 +12,7 @@ import static com.javarush.island.liashchanka.constants.Constants.areaY;
 public abstract class Animal {
     private int maxStep;
     private double weight;
-    private Position position;
+     private Position position;
     private String name;
     private String id;
 

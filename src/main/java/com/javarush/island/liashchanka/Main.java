@@ -56,7 +56,7 @@ public class Main {
 //        thread2.start();
 
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
-        executorService.scheduleAtFixedRate(taskThreads, 0, periodSeconds, TimeUnit.SECONDS);
+        executorService.scheduleAtFixedRate(taskThreads, 0, periodSeconds, TimeUnit.SECONDS); //periodSeconds
 
         //  System.out.println("\uD83D\uDC3B");
 

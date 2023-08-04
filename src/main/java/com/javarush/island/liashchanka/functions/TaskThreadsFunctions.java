@@ -9,6 +9,7 @@ import java.util.Map;
 
 import static com.javarush.island.liashchanka.functions.BornAnimal.makeBornAnimal;
 import static com.javarush.island.liashchanka.functions.BornPlant.makeBornPlant;
+import static com.javarush.island.liashchanka.functions.DeleteAnimalFromIsland.deleteAnimalFromIsland;
 import static com.javarush.island.liashchanka.functions.EatAnimal.makeEatAnimal;
 import static com.javarush.island.liashchanka.functions.Move.moveAnimal;
 
@@ -33,21 +34,19 @@ public class TaskThreadsFunctions implements Runnable{
             // Рождение растений и переучет острова
             case 0 -> makeBornPlant(animalsList, island);
 
-            // Животные едят, после этого удаляем умерших и отходивших животных и пересчитываем остров
+            // Животные едят и пересчитываем остров
             case 1 -> makeEatAnimal(animalsList, island);
 
-            // Животные ходят, после этого удаляем умерших и отходивших животных и пересчитываем остров
+            // Животные ходят и пересчитываем остров
             case 2 -> moveAnimal(animalsList, island);
 
             // Животные рождаются, после переучет острова
             case 3 -> makeBornAnimal(animalsList, island);
 
-            case 4 ->    {     System.out.println("@@--------------------------------------------------");
-            Iterator<Animal> iterator = animalsList.iterator();
-            while (iterator.hasNext()) {
-                Animal animal = iterator.next();
-                System.out.println(animal);}
-            }
+            // Удаляем умерших и отходивших животных
+            case 4 -> deleteAnimalFromIsland(animalsList, island);
+
+
         }
     }
 }
