@@ -13,11 +13,14 @@ public class Analytics {
 
 
 
+    public static int countPredatory;
+    public static int countHerbivorous;
+
     public static void makeAnalytics(List<Animal> animalsList, Map<Position, List<Animal>> island){
 
-        int countPredatory = 0;
-        int countHerbivorous = 0;
 
+        countPredatory = 0;
+        countHerbivorous=0;
         for(var animal: animalsList){
             Class<? extends Animal> personClass = animal.getClass();
             final Class<?>[] interfaces = personClass.getInterfaces();

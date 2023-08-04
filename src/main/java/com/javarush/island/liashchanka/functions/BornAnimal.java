@@ -38,20 +38,41 @@ public class BornAnimal {
             }
 
             for (var animalName : islandGrupByNameinPosition.entrySet()) {
-                var randomAnimal = ThreadLocalRandom.current();
-                // SecureRandom randomAnimal = new SecureRandom();
-                if((countOfAnimal - animalName.getValue().size())>0 && (countOfAnimal - animalName.getValue().size())!= BornFromMin) {
-                    int randomAnimalToBorn = randomAnimal.nextInt((countOfAnimal - animalName.getValue().size())); // Сколько рандомно создаем животных
-                    for (int m = 0; m < randomAnimalToBorn; m++) {
+
+                if(animalName.getValue().size()!= BornFromMin) {
+                    int countToBorn = (int) animalName.getValue().size()/2; // Сколько рандомно создаем животных
+                    for (int m = 0; m < countToBorn; m++) {
                         Animal animal = creator.createAnimal(animalName.getKey()); // Фабрика по созданию животных
 
                         animal.setPosition(positionAndAnimal.getKey());
-                        animal.setId(animalName.getKey() + "-new-" + m + "-random-" + randomAnimalToBorn); // Написание уникальное id
+                        animal.setId(animalName.getKey() + "-new-" + m + "-child-" + countToBorn); // Написание уникальное id
                         animalsList.add(animal); // добавляет животное в лист
                     }
                 }
 
             }
+
+
+//            Старый метод рождения, где рандомно вбырается количество детей
+//            for (var animalName : islandGrupByNameinPosition.entrySet()) {
+//                var randomAnimal = ThreadLocalRandom.current();
+//                // SecureRandom randomAnimal = new SecureRandom();
+//                if((countOfAnimal - animalName.getValue().size())>0 && (countOfAnimal - animalName.getValue().size())!= BornFromMin) {
+//                    int randomAnimalToBorn = randomAnimal.nextInt((countOfAnimal - animalName.getValue().size())); // Сколько рандомно создаем животных
+//                    for (int m = 0; m < randomAnimalToBorn; m++) {
+//                        Animal animal = creator.createAnimal(animalName.getKey()); // Фабрика по созданию животных
+//
+//                        animal.setPosition(positionAndAnimal.getKey());
+//                        animal.setId(animalName.getKey() + "-new-" + m + "-random-" + randomAnimalToBorn); // Написание уникальное id
+//                        animalsList.add(animal); // добавляет животное в лист
+//                    }
+//                }
+//
+//            }
+
+
+
+
         }
 
         // Переучет острова

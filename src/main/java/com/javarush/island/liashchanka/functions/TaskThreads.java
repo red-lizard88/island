@@ -72,6 +72,11 @@ public class TaskThreads implements Runnable {
 
         makeAnalytics(animalsList, island);
 
+        Thread current = Thread.currentThread();
+        if(countPredatory==0 || countHerbivorous==0){ //Если 0 хищников или травоядных останавливаем программу
+            current.interrupt();
+            System.exit(0);
+        }
 
         //  System.out.println("@@--------------------------------------------------");
 

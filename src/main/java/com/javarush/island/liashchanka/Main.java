@@ -16,6 +16,8 @@ import static com.javarush.island.liashchanka.animal.AnimalsEatPersentMap.animal
 import static com.javarush.island.liashchanka.animal.AnimalsMaxCountMap.animalsMaxCountMap;
 import static com.javarush.island.liashchanka.animal.AnimalsMaxStepMap.animalsMaxStepMap;
 import static com.javarush.island.liashchanka.constants.Constants.*;
+import static com.javarush.island.liashchanka.functions.Analytics.countHerbivorous;
+import static com.javarush.island.liashchanka.functions.Analytics.countPredatory;
 import static com.javarush.island.liashchanka.functions.BornAnimal.makeBornAnimal;
 import static com.javarush.island.liashchanka.functions.EatAnimal.makeEatAnimal;
 import static com.javarush.island.liashchanka.functions.IslandCreate.islandCreate;
@@ -43,7 +45,9 @@ public class Main {
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
         executorService.scheduleAtFixedRate(taskThreads, 0, periodSeconds, TimeUnit.SECONDS); //periodSeconds
 
-        //  System.out.println("\uD83D\uDC3B");
+
+
+
 
 
 
