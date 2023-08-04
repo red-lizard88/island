@@ -37,6 +37,7 @@ public class Main {
         // Создаем объекты животных на начальной арене с максимальным количеством на клетке
          islandCreate(animalsList, island);
 
+      //  makeEatAnimal(animalsList, island);
 //        for (var oneAnimal : animalsList) {
 //            System.out.println(oneAnimal);
 //        }

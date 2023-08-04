@@ -22,19 +22,17 @@ public class EatAnimal {
                 for (var animalEatAndNamePersent : animalsEatPersentMap().entrySet()) {
 
                     if (animal.getName().equals(animalEatAndNamePersent.getKey())) {
-                        for (var animal2 : positionAndAnimal.getValue()) {
-
-                            var what = animalEatAndNamePersent.getValue();
-                            for (var animalNameMeEat : what.entrySet() ){
-
-                                boolean animal3 = animal2.getName().equals(animalNameMeEat.getKey());
-                                int value = animalNameMeEat.getValue();
-                                boolean animal4 = animalNameMeEat.getValue() > 0;
-                                if (animal3 && animal4) {
-                                    if (animal2.isLive()) {  // Если животное живое поедаем его
-                                        Animal.eat(animal, animal2);
+                        int countOfEat=0; // Съедаем только одно животное
+                        for (var animalMeEat : positionAndAnimal.getValue()) {
+                            for (var animalNameMeEat : animalEatAndNamePersent.getValue().entrySet() ){
+                                if (animalMeEat.getName().equals(animalNameMeEat.getKey()) && animalNameMeEat.getValue() > 0 && countOfEat==0) {
+                                    if (animalMeEat.isLive()) {  // Если животное живое поедаем его
+                                        Animal.eat(animal, animalMeEat);
+                                        countOfEat = 1;
                                     }
                                 }
+
+
                             }
 
                         }
@@ -60,7 +58,7 @@ public class EatAnimal {
 //        }
 //----------------------------
         // Удаление умерших и отходивших животных
-        // deleteAnimalFromIsland(animalsList);
+         deleteAnimalFromIsland(animalsList);
 
         // Переучет острова
         makeIslandRecalculation(animalsList, island);

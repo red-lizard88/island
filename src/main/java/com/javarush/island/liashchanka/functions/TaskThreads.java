@@ -4,8 +4,11 @@ import com.javarush.island.liashchanka.abstracts.Animal;
 import com.javarush.island.liashchanka.animal.Position;
 
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static com.javarush.island.liashchanka.functions.BornAnimal.makeBornAnimal;
+import static com.javarush.island.liashchanka.functions.BornPlant.makeBornPlant;
 import static com.javarush.island.liashchanka.functions.EatAnimal.makeEatAnimal;
 import static com.javarush.island.liashchanka.functions.IslandCreate.islandCreate;
 import static com.javarush.island.liashchanka.functions.Move.moveAnimal;
@@ -42,30 +45,20 @@ public class TaskThreads implements Runnable {
     @Override
     public void run() {
 
-        // Животные едят, после этого удаляем умерших и отходивших животных и пересчитываем остров
-        makeEatAnimal(animalsList, island);
 
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
 
-        // Животные ходят, после этого удаляем умерших и отходивших животных и пересчитываем остров
-        moveAnimal(animalsList, island);
-
-
-        // Животные рождаются, после переучет острова
-        makeBornAnimal(animalsList, island);
-
-
-        System.out.println("@@--------------------------------------------------");
-        Iterator<Animal> iterator = animalsList.iterator();
-        while (iterator.hasNext()) {
-            Animal animal = iterator.next();
-            System.out.println(animal);
+        for (int i = 0; i < 5; i++) {
+            executorService.execute(new TaskThreadsFunctions(animalsList, island, i));
         }
+        
 
 
-//        System.out.println("@@--------------------------------------------------");
-//        for (var oneAnimal : animalsList) {
-//            System.out.println(oneAnimal);
-//        }
+
+
+
+
+
 
     }
 }
