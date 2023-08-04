@@ -51,7 +51,7 @@ public class TaskThreads implements Runnable {
 
 //        ExecutorService executorService = Executors.newFixedThreadPool(1);
 //
-//        for (int i = 0; i < 6; i++) {
+//        for (int i = 0; i < 5; i++) {
 //            executorService.execute(new TaskThreadsFunctions(animalsList, island, i));
 //        }
 
@@ -71,6 +71,7 @@ public class TaskThreads implements Runnable {
         deleteAnimalFromIsland(animalsList, island);
 
         makeAnalytics(animalsList, island);
+
 
         Thread current = Thread.currentThread();
         if(countPredatory==0 || countHerbivorous==0){ //Если 0 хищников или травоядных останавливаем программу

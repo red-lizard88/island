@@ -46,8 +46,8 @@ public class TaskThreadsFunctions implements Runnable{
 //
 //            // Удаляем умерших и отходивших животных
 //            case 4 -> deleteAnimalFromIsland(animalsList, island);
-//
-//            case 5 -> makeAnalytics(animalsList, island);
+
+
 
 
         }
