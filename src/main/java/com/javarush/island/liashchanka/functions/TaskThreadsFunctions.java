@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import static com.javarush.island.liashchanka.functions.Analytics.makeAnalytics;
 import static com.javarush.island.liashchanka.functions.BornAnimal.makeBornAnimal;
 import static com.javarush.island.liashchanka.functions.BornPlant.makeBornPlant;
 import static com.javarush.island.liashchanka.functions.DeleteAnimalFromIsland.deleteAnimalFromIsland;
@@ -31,20 +32,22 @@ public class TaskThreadsFunctions implements Runnable{
 
         switch (numberFunctions) {
 
-            // Рождение растений и переучет острова
-            case 0 -> makeBornPlant(animalsList, island);
-
-            // Животные едят и пересчитываем остров
-            case 1 -> makeEatAnimal(animalsList, island);
-
-            // Животные ходят и пересчитываем остров
-            case 2 -> moveAnimal(animalsList, island);
-
-            // Животные рождаются, после переучет острова
-            case 3 -> makeBornAnimal(animalsList, island);
-
-            // Удаляем умерших и отходивших животных
-            case 4 -> deleteAnimalFromIsland(animalsList, island);
+//            // Рождение растений и переучет острова
+//            case 0 -> makeBornPlant(animalsList, island);
+//
+//            // Животные едят и пересчитываем остров
+//            case 1 -> makeEatAnimal(animalsList, island);
+//
+//            // Животные ходят и пересчитываем остров
+//            case 2 -> moveAnimal(animalsList, island);
+//
+//            // Животные рождаются, после переучет острова
+//            case 3 -> makeBornAnimal(animalsList, island);
+//
+//            // Удаляем умерших и отходивших животных
+//            case 4 -> deleteAnimalFromIsland(animalsList, island);
+//
+//            case 5 -> makeAnalytics(animalsList, island);
 
 
         }

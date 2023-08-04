@@ -15,6 +15,9 @@ public class AnimalsMaxCountMap {
         animalsMaxCountMap.put("Удав", 30); //30
         animalsMaxCountMap.put("Лиса", 30); //30
         animalsMaxCountMap.put("Медведь", 5); //5
+        animalsMaxCountMap.put("Орел", 20); //20
+        animalsMaxCountMap.put("Лошадь", 20); //20
+        animalsMaxCountMap.put("Олень", 20); //20
 
 
         return animalsMaxCountMap;

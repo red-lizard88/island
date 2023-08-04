@@ -4,6 +4,7 @@ import com.javarush.island.liashchanka.animal.Position;
 
 import java.security.SecureRandom;
 import java.util.HashMap;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static com.javarush.island.liashchanka.animal.AnimalsEatPersentMap.animalsEatPersentMap;
 import static com.javarush.island.liashchanka.constants.Constants.areaX;
@@ -86,12 +87,6 @@ public abstract class Animal {
     }
 
 
-//    Position move(Position position) {
-//
-//        int x = position.getX() + (int) ( Math.random() * 10 );
-//        int y = position.getY() + (int) ( Math.random() * 7 );
-//        return new Position(x, y);
-//    }
 
 
     public static void move(int maxStep, Animal animal) {
@@ -102,13 +97,17 @@ public abstract class Animal {
 
 
         // Генерация рандомного шага от минимального равного 0 до максимального не включая
-        SecureRandom randomStep = new SecureRandom();
+        //SecureRandom randomStep = new SecureRandom();
+        var randomStep = ThreadLocalRandom.current();
         int minStep = 0;
         int step = randomStep.nextInt(maxStep - minStep + 1) + minStep;
 
-        SecureRandom randomStepXOrY = new SecureRandom();
-        SecureRandom randomStepRightOrLeft = new SecureRandom();
-        SecureRandom randomStepTopOrBottom = new SecureRandom();
+        //SecureRandom randomStepXOrY = new SecureRandom();
+        var randomStepXOrY = ThreadLocalRandom.current();
+        //SecureRandom randomStepRightOrLeft = new SecureRandom();
+        var randomStepRightOrLeft = ThreadLocalRandom.current();
+        //SecureRandom randomStepTopOrBottom = new SecureRandom();
+        var randomStepTopOrBottom = ThreadLocalRandom.current();
 
         int oneStepXOrY = randomStepXOrY.nextInt(2); // Если 0 движение по Y, если 1 движение по X
         int oneStepRightOrLeft = randomStepRightOrLeft.nextInt(2); // Если 0 движение вправо, если 1 движение по влево
@@ -164,7 +163,8 @@ public abstract class Animal {
 
                         for (var animalNameToEatAndPersent : AnimalNameAndNameToEat.getValue().entrySet()) {
                             if (meEat.getName().equals(animalNameToEatAndPersent.getKey())) {
-                                SecureRandom randomAnimal = new SecureRandom();
+                               // SecureRandom randomAnimal = new SecureRandom();
+                                var randomAnimal = ThreadLocalRandom.current();
                                 int randomAnimalToEat = randomAnimal.nextInt(100); // Рандом на сколько мы съедим
                                 if (randomAnimalToEat < animalNameToEatAndPersent.getValue()) { // На сколько процентов мы его съедим
                                     meEat.setLive(false);

@@ -9,6 +9,7 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static com.javarush.island.liashchanka.animal.AnimalsMaxCountMap.animalsMaxCountMap;
 import static com.javarush.island.liashchanka.constants.Constants.areaX;
@@ -29,7 +30,8 @@ public class IslandCreate {
                 for (var animalName : animalsMaxCountMap().entrySet()) {
 
                     // Генерим рандомное количество животных
-                    SecureRandom randomCount = new SecureRandom();
+                    var randomCount = ThreadLocalRandom.current();
+                    //SecureRandom randomCount = new SecureRandom();
                     int randomAnimalCount = randomCount.nextInt(animalName.getValue());
 
                     for (int m = 0; m < randomAnimalCount; m++) {

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static com.javarush.island.liashchanka.animal.AnimalsMaxCountMap.animalsMaxCountMap;
 import static com.javarush.island.liashchanka.constants.Constants.BornFromMin;
@@ -39,7 +40,8 @@ public class BornPlant {
             for (var animalName : islandGrupByNameinPosition.entrySet()) {
 
                 if(animalName.getKey().equals("Растения")) {
-                    SecureRandom randomAnimal = new SecureRandom();
+                    var randomAnimal = ThreadLocalRandom.current();
+                   // SecureRandom randomAnimal = new SecureRandom();
                     if ((countOfAnimal - animalName.getValue().size()) > 0) {
                         int randomAnimalToBorn = randomAnimal.nextInt((countOfAnimal - animalName.getValue().size())); // Сколько рандомно создаем животных
                         for (int m = 0; m < randomAnimalToBorn; m++) {

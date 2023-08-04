@@ -115,6 +115,60 @@ public class AnimalsEatPersentMap {
         bearEatPersentMap.put("Гусеница", 0);
         bearEatPersentMap.put("Растения", 0);
 
+        HashMap<String, Integer> eagleEatPersentMap = new HashMap<>();
+        eagleEatPersentMap.put("Волк", 0); //0
+        eagleEatPersentMap.put("Удав", 0);
+        eagleEatPersentMap.put("Лиса", 10);
+        eagleEatPersentMap.put("Медведь", 0);
+        eagleEatPersentMap.put("Орел", 0);
+        eagleEatPersentMap.put("Лошадь", 0);
+        eagleEatPersentMap.put("Олень", 0);
+        eagleEatPersentMap.put("Кролик", 90);
+        eagleEatPersentMap.put("Мышь", 90);
+        eagleEatPersentMap.put("Коза", 0);
+        eagleEatPersentMap.put("Овца", 0);
+        eagleEatPersentMap.put("Кабан", 0);
+        eagleEatPersentMap.put("Буйвол", 0);
+        eagleEatPersentMap.put("Утка", 80);
+        eagleEatPersentMap.put("Гусеница", 0);
+        eagleEatPersentMap.put("Растения", 0);
+
+        HashMap<String, Integer> horseEatPersentMap = new HashMap<>();
+        horseEatPersentMap.put("Волк", 0); //0
+        horseEatPersentMap.put("Удав", 0);
+        horseEatPersentMap.put("Лиса", 0);
+        horseEatPersentMap.put("Медведь", 0);
+        horseEatPersentMap.put("Орел", 0);
+        horseEatPersentMap.put("Лошадь", 0);
+        horseEatPersentMap.put("Олень", 0);
+        horseEatPersentMap.put("Кролик", 0);
+        horseEatPersentMap.put("Мышь", 0);
+        horseEatPersentMap.put("Коза", 0);
+        horseEatPersentMap.put("Овца", 0);
+        horseEatPersentMap.put("Кабан", 0);
+        horseEatPersentMap.put("Буйвол", 0);
+        horseEatPersentMap.put("Утка", 0);
+        horseEatPersentMap.put("Гусеница", 0);
+        horseEatPersentMap.put("Растения", 100);
+
+        HashMap<String, Integer> deerEatPersentMap = new HashMap<>();
+        deerEatPersentMap.put("Волк", 0); //0
+        deerEatPersentMap.put("Удав", 0);
+        deerEatPersentMap.put("Лиса", 0);
+        deerEatPersentMap.put("Медведь", 0);
+        deerEatPersentMap.put("Орел", 0);
+        deerEatPersentMap.put("Лошадь", 0);
+        deerEatPersentMap.put("Олень", 0);
+        deerEatPersentMap.put("Кролик", 0);
+        deerEatPersentMap.put("Мышь", 0);
+        deerEatPersentMap.put("Коза", 0);
+        deerEatPersentMap.put("Овца", 0);
+        deerEatPersentMap.put("Кабан", 0);
+        deerEatPersentMap.put("Буйвол", 0);
+        deerEatPersentMap.put("Утка", 0);
+        deerEatPersentMap.put("Гусеница", 0);
+        deerEatPersentMap.put("Растения", 100);
+
         HashMap<String, HashMap<String, Integer>> animalsEatPersentMap = new HashMap<>();
         animalsEatPersentMap.put("Волк", wolfEatPersentMap);
         animalsEatPersentMap.put("Кролик", rabbitEatPersentMap);
@@ -122,6 +176,9 @@ public class AnimalsEatPersentMap {
         animalsEatPersentMap.put("Удав", boaEatPersentMap);
         animalsEatPersentMap.put("Лиса", foxEatPersentMap);
         animalsEatPersentMap.put("Медведь", bearEatPersentMap);
+        animalsEatPersentMap.put("Орел", eagleEatPersentMap);
+        animalsEatPersentMap.put("Лошадь", horseEatPersentMap);
+        animalsEatPersentMap.put("Олень", deerEatPersentMap);
 
         return animalsEatPersentMap;
     }

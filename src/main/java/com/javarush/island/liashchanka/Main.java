@@ -26,107 +26,29 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // Наш остров и список животных в Листе (они должны совпадать):)
         List<Animal> animalsList = new ArrayList<>();
-//
-//
         Map<Position, List<Animal>> island = new HashMap<>();
 
 
 
 
-        // Создаем объекты животных на начальной арене с максимальным количеством на клетке
+        // Создаем объекты животных на начальной арене
          islandCreate(animalsList, island);
 
-      //  makeEatAnimal(animalsList, island);
-//        for (var oneAnimal : animalsList) {
-//            System.out.println(oneAnimal);
-//        }
-
-//        Iterator<Animal> iterator = animalsList.iterator();
-//        while(iterator.hasNext()) {
-//            Animal animal = iterator.next();
-//            System.out.println(animal);
-//        }
 
         TaskThreads taskThreads = new TaskThreads(animalsList, island);
-//        Thread thread1 = new Thread(taskThreads);
-//        thread1.start();
-//
-//        Thread thread2 = new Thread(taskThreads);
-//        thread2.start();
+
 
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
         executorService.scheduleAtFixedRate(taskThreads, 0, periodSeconds, TimeUnit.SECONDS); //periodSeconds
 
         //  System.out.println("\uD83D\uDC3B");
 
-//        System.out.println("@@--------------------------------------------------");
-//        for (var oneAnimal : taskThreads.getAnimalsList()) {
-//            System.out.println(oneAnimal);
-//        }
-//
-//
-////        for (var oneAnimal : animalsList) {
-////            System.out.println(oneAnimal);
-////        }
-//
-//
-//        // Вывод острова
-////        for (var oneAnimal : island.entrySet()) {
-////            System.out.println(oneAnimal);
-////        }
-//
-//
-//        // Поедание одно животное другого, удаление съеденных и переучет на острове живых животных
-//          makeEatAnimal(animalsList, island);
-//
-//
-//
-//        // Движение животных на клетках, удаление отходивших и переучет на острове живых
-//        moveAnimal(animalsList, island);
-//        moveAnimal(animalsList, island);
-//        moveAnimal(animalsList, island);
-//        moveAnimal(animalsList, island);
-//        moveAnimal(animalsList, island);
-//
-////        for (var animal : animalsList) {
-////            for (var animalMaxStep : animalsMaxStepMap().entrySet()) {
-////                if (animal.getName().equals(animalMaxStep.getKey())) {
-////                    Animal.move(animalMaxStep.getValue(), animal);
-////                }
-////            }
-////        }
-//
-//
-//
-//
-//
-//
-//
-//        // Размножение животных с учетом максимального количества на клетке, переучет острова после размножения
-//        makeBornAnimal(animalsList, island);
 
 
 
 
-//        for (var oneAnimal : animalsList) {
-//            System.out.println(oneAnimal);
-//        }
-
-
-
-
-     //   System.out.println("----------------------------------------------");
-        // Вывод острова
-//        for (var oneAnimal : island.entrySet()) {
-//            System.out.println(oneAnimal);
-//        }
-
-        // Вывод животных
-//        System.out.println("!!!!----------------------------------------------");
-//        for (var oneAnimal : animalsList) {
-//            System.out.println(oneAnimal);
-//        }
 
 
     }

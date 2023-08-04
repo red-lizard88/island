@@ -10,6 +10,7 @@ import java.util.concurrent.Executors;
 import static com.javarush.island.liashchanka.functions.Analytics.*;
 import static com.javarush.island.liashchanka.functions.BornAnimal.makeBornAnimal;
 import static com.javarush.island.liashchanka.functions.BornPlant.makeBornPlant;
+import static com.javarush.island.liashchanka.functions.DeleteAnimalFromIsland.deleteAnimalFromIsland;
 import static com.javarush.island.liashchanka.functions.EatAnimal.makeEatAnimal;
 import static com.javarush.island.liashchanka.functions.IslandCreate.islandCreate;
 import static com.javarush.island.liashchanka.functions.Move.moveAnimal;
@@ -48,26 +49,37 @@ public class TaskThreads implements Runnable {
     public void run() {
 
 
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
+//        ExecutorService executorService = Executors.newFixedThreadPool(1);
+//
+//        for (int i = 0; i < 6; i++) {
+//            executorService.execute(new TaskThreadsFunctions(animalsList, island, i));
+//        }
 
-        for (int i = 0; i < 5; i++) {
-            executorService.execute(new TaskThreadsFunctions(animalsList, island, i));
-        }
+        // Рождение растений и переучет острова
+        makeBornPlant(animalsList, island);
+
+        // Животные едят и пересчитываем остров
+        makeEatAnimal(animalsList, island);
+
+        // Животные ходят и пересчитываем остров
+        moveAnimal(animalsList, island);
+
+        // Животные рождаются, после переучет острова
+        makeBornAnimal(animalsList, island);
+
+        // Удаляем умерших и отходивших животных
+        deleteAnimalFromIsland(animalsList, island);
 
         makeAnalytics(animalsList, island);
-        System.out.println("@@--------------------------------------------------");
 
+
+        //  System.out.println("@@--------------------------------------------------");
 
 //        Iterator<Animal>  iterator = animalsList.iterator();
 //        while (iterator.hasNext()) {
 //            Animal animal = iterator.next();
 //            System.out.println(animal);
 //        }
-
-
-
-
-
 
 
     }

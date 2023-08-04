@@ -23,7 +23,10 @@ public class AnimalFactory extends AnimalFactoryAbstract {
             case "Растения" -> new Plant();
             case "Удав" -> new Boa();
             case "Лиса" -> new Fox();
-            case "Медведь" -> new Fox();
+            case "Медведь" -> new Bear();
+            case "Орел" -> new Eagle();
+            case "Лошадь" -> new Horse();
+            case "Олень" -> new Deer();
             default -> null;
         };
 
