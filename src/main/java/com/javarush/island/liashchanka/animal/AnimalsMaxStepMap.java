@@ -20,6 +20,13 @@ public class AnimalsMaxStepMap {
         animalsMaxStepMap.put("Орел", 3);
         animalsMaxStepMap.put("Лошадь", 4);
         animalsMaxStepMap.put("Олень", 4);
+        animalsMaxStepMap.put("Мышь", 1);
+        animalsMaxStepMap.put("Коза", 3);
+        animalsMaxStepMap.put("Овца", 3);
+        animalsMaxStepMap.put("Кабан", 2);
+        animalsMaxStepMap.put("Буйвол", 3);
+        animalsMaxStepMap.put("Утка", 4);
+        animalsMaxStepMap.put("Гусеница", 0);
 
         return animalsMaxStepMap;
     }

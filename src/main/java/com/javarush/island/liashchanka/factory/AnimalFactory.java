@@ -27,6 +27,13 @@ public class AnimalFactory extends AnimalFactoryAbstract {
             case "Орел" -> new Eagle();
             case "Лошадь" -> new Horse();
             case "Олень" -> new Deer();
+            case "Мышь" -> new Mouse();
+            case "Коза" -> new Goat();
+            case "Овца" -> new Sheep();
+            case "Кабан" -> new Boar();
+            case "Буйвол" -> new Buffalo();
+            case "Утка" -> new Duck();
+            case "Гусеница" -> new Caterpillar();
             default -> null;
         };
 

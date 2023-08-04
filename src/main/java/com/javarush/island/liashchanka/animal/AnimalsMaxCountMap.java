@@ -14,10 +14,17 @@ public class AnimalsMaxCountMap {
         animalsMaxCountMap.put("Растения", 200); //200
         animalsMaxCountMap.put("Удав", 30); //30
         animalsMaxCountMap.put("Лиса", 30); //30
-        animalsMaxCountMap.put("Медведь", 5); //5
-        animalsMaxCountMap.put("Орел", 20); //20
-        animalsMaxCountMap.put("Лошадь", 20); //20
-        animalsMaxCountMap.put("Олень", 20); //20
+//        animalsMaxCountMap.put("Медведь", 5); //5
+//        animalsMaxCountMap.put("Орел", 20); //20
+//        animalsMaxCountMap.put("Лошадь", 20); //20
+//        animalsMaxCountMap.put("Олень", 20); //20
+//        animalsMaxCountMap.put("Мышь", 500); //500
+//        animalsMaxCountMap.put("Коза", 140); //140
+//        animalsMaxCountMap.put("Овца", 140);
+//        animalsMaxCountMap.put("Кабан", 50);
+//        animalsMaxCountMap.put("Буйвол", 10);
+//        animalsMaxCountMap.put("Утка", 200);
+//        animalsMaxCountMap.put("Гусеница", 1000);
 
 
         return animalsMaxCountMap;
