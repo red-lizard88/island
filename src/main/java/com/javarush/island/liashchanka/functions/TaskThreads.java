@@ -3,7 +3,8 @@ package com.javarush.island.liashchanka.functions;
 import com.javarush.island.liashchanka.abstracts.Animal;
 import com.javarush.island.liashchanka.animal.Position;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -12,7 +13,6 @@ import static com.javarush.island.liashchanka.functions.BornAnimal.makeBornAnima
 import static com.javarush.island.liashchanka.functions.BornPlant.makeBornPlant;
 import static com.javarush.island.liashchanka.functions.DeleteAnimalFromIsland.deleteAnimalFromIsland;
 import static com.javarush.island.liashchanka.functions.EatAnimal.makeEatAnimal;
-import static com.javarush.island.liashchanka.functions.IslandCreate.islandCreate;
 import static com.javarush.island.liashchanka.functions.Move.moveAnimal;
 
 public class TaskThreads implements Runnable {
@@ -49,11 +49,11 @@ public class TaskThreads implements Runnable {
     public void run() {
 
 
-//        ExecutorService executorService = Executors.newFixedThreadPool(1);
-//
-//        for (int i = 0; i < 5; i++) {
-//            executorService.execute(new TaskThreadsFunctions(animalsList, island, i));
-//        }
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
+
+        for (int i = 0; i < 4; i++) {
+            executorService.execute(new TaskThreadsFunctions(animalsList, island, i));
+        }
 
         // Рождение растений и переучет острова
         makeBornPlant(animalsList, island);
@@ -79,13 +79,7 @@ public class TaskThreads implements Runnable {
             System.exit(0);
         }
 
-        //  System.out.println("@@--------------------------------------------------");
 
-//        Iterator<Animal>  iterator = animalsList.iterator();
-//        while (iterator.hasNext()) {
-//            Animal animal = iterator.next();
-//            System.out.println(animal);
-//        }
 
 
     }

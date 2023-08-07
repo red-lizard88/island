@@ -43,9 +43,6 @@ public class TaskThreadsFunctions implements Runnable{
 //
 //            // Животные рождаются, после переучет острова
 //            case 3 -> makeBornAnimal(animalsList, island);
-//
-//            // Удаляем умерших и отходивших животных
-//            case 4 -> deleteAnimalFromIsland(animalsList, island);
 
 
 
