@@ -22,16 +22,16 @@ public class TaskThreadsFunctions implements Runnable{
         this.numberFunctions = numberFunctions;
     }
 
-    volatile List<Animal> animalsList;
-    volatile Map<Position, List<Animal>> island;
+     volatile List<Animal> animalsList;
+     volatile Map<Position, List<Animal>> island;
     private int numberFunctions;
 
 
     @Override
     public void run() {
 
-        switch (numberFunctions) {
-
+//        switch (numberFunctions) {
+//
 //            // Рождение растений и переучет острова
 //            case 0 -> makeBornPlant(animalsList, island);
 //
@@ -43,10 +43,9 @@ public class TaskThreadsFunctions implements Runnable{
 //
 //            // Животные рождаются, после переучет острова
 //            case 3 -> makeBornAnimal(animalsList, island);
-
-
-
-
-        }
+//
+//
+//        }
+//
     }
 }

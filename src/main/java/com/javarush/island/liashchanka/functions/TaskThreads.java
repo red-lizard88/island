@@ -49,37 +49,38 @@ public class TaskThreads implements Runnable {
     public void run() {
 
 
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
+//        ExecutorService executorService = Executors.newFixedThreadPool(1);
+//
+//        for (int i = 0; i < 4; i++) {
+//            executorService.execute(new TaskThreadsFunctions(animalsList, island, i));
+//        }
 
-        for (int i = 0; i < 4; i++) {
-            executorService.execute(new TaskThreadsFunctions(animalsList, island, i));
+        synchronized (island) {
+            // Рождение растений и переучет острова
+            makeBornPlant(animalsList, island);
+
+            // Животные едят и пересчитываем остров
+            makeEatAnimal(animalsList, island);
+
+            // Животные ходят и пересчитываем остров
+            moveAnimal(animalsList, island);
+
+            // Животные рождаются, после переучет острова
+            makeBornAnimal(animalsList, island);
+
+            // Удаляем умерших и отходивших животных
+            deleteAnimalFromIsland(animalsList, island);
+
+            makeAnalytics(animalsList, island);
+
+
+            Thread current = Thread.currentThread();
+            if (countPredatory == 0 || countHerbivorous == 0) { //Если 0 хищников или травоядных останавливаем программу
+                current.interrupt();
+                System.exit(0);
+            }
+
         }
-
-        // Рождение растений и переучет острова
-        makeBornPlant(animalsList, island);
-
-        // Животные едят и пересчитываем остров
-        makeEatAnimal(animalsList, island);
-
-        // Животные ходят и пересчитываем остров
-        moveAnimal(animalsList, island);
-
-        // Животные рождаются, после переучет острова
-        makeBornAnimal(animalsList, island);
-
-        // Удаляем умерших и отходивших животных
-        deleteAnimalFromIsland(animalsList, island);
-
-        makeAnalytics(animalsList, island);
-
-
-        Thread current = Thread.currentThread();
-        if(countPredatory==0 || countHerbivorous==0){ //Если 0 хищников или травоядных останавливаем программу
-            current.interrupt();
-            System.exit(0);
-        }
-
-
 
 
     }

@@ -41,7 +41,6 @@ public class Main {
 
         TaskThreads taskThreads = new TaskThreads(animalsList, island);
 
-
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
         executorService.scheduleAtFixedRate(taskThreads, 0, periodSeconds, TimeUnit.SECONDS); //periodSeconds
 
