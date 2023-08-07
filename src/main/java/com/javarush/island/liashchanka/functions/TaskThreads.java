@@ -46,7 +46,7 @@ public class TaskThreads implements Runnable {
 
 
     @Override
-    public void run() {
+    public synchronized void run() {
 
 
 //        ExecutorService executorService = Executors.newFixedThreadPool(1);
@@ -55,7 +55,7 @@ public class TaskThreads implements Runnable {
 //            executorService.execute(new TaskThreadsFunctions(animalsList, island, i));
 //        }
 
-        synchronized (island) {
+
             // Рождение растений и переучет острова
             makeBornPlant(animalsList, island);
 
@@ -83,5 +83,5 @@ public class TaskThreads implements Runnable {
         }
 
 
-    }
+
 }
