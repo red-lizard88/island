@@ -41,13 +41,24 @@ public class BornAnimal {
 
                 if(animalName.getValue().size()!= BornFromMin) {
                     int countToBorn = (int) animalName.getValue().size()/2; // Сколько рандомно создаем животных
-                    for (int m = 0; m < countToBorn; m++) {
-                        Animal animal = creator.createAnimal(animalName.getKey()); // Фабрика по созданию животных
 
-                        animal.setPosition(positionAndAnimal.getKey());
-                        animal.setId(animalName.getKey() + "-new-" + m + "-child-" + countToBorn); // Написание уникальное id
-                        animalsList.add(animal); // добавляет животное в лист
+                    for (var animalName2 : animalsMaxCountMap().entrySet()) {
+                        if(animalName.getKey().equals(animalName2.getKey())) {
+                            if(animalName2.getValue()-animalName.getValue().size()<countToBorn) {
+                                countToBorn = animalName2.getValue()-animalName.getValue().size();
+                            }
+                            for (int m = 0; m < countToBorn; m++) {
+                                Animal animal = creator.createAnimal(animalName.getKey()); // Фабрика по созданию животных
+
+                                animal.setPosition(positionAndAnimal.getKey());
+                                animal.setId(animalName.getKey() + "-new-" + m + "-child-" + countToBorn); // Написание уникальное id
+                                animalsList.add(animal); // добавляет животное в лист
+                            }
+
+                        }
+
                     }
+
                 }
 
             }
